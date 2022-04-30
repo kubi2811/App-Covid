@@ -63,7 +63,7 @@ public class TaiKhoanDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "INSERT INTO NhanVien VALUES (?, ?, null, null, null); insert into TaiKhoan values(?,?,?,?)";
+            String sql = "INSERT INTO NhanVien VALUES (?, ?, null, null, null, null, null, null, null, null, null); insert into TaiKhoan values(?,?,?,?)";
 //            INSERT INTO NhanVien VALUES (?, ?, null, null, null); INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)
             pre = conn.prepareStatement(sql);
             pre.setString(1, tk.getUser());

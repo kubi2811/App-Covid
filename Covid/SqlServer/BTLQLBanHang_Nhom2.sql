@@ -7,9 +7,18 @@ go
 create table NhanVien(
 	maNV nchar(20) primary key not null,
 	tenNV nvarchar(30),
-	chucVu nvarchar(20),
-	luongCoBan float,
-	phuCap float
+	--chucVu nvarchar(20),
+	--luongCoBan float,
+	--phuCap float
+	namSinh nchar(20),
+	diaChi nchar(100),
+	thanhPho nchar(20),
+	quan nchar(20),
+	phuong nchar(20),
+	trangThai nchar(20),
+	noiDieuTri nchar(100),
+	lienQuan nchar(100),
+	lichSuCovid nchar(20)
 )
 
 create table TaiKhoan(

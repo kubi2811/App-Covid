@@ -195,7 +195,7 @@ public class DangNhapFirst extends javax.swing.JFrame {
         try {
             conn = JDBCConnection.getConnection();
 //            String sql = "Select * from TaiKhoan inner join NhanVien on TaiKhoan.maNV = NhanVien.maNV where username = ? and pass = ? and quyenTruyCap = ?";
-            String sql = "INSERT INTO NhanVien VALUES (?, ?, null, null, null); INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO NhanVien VALUES (?, ?, null, null, null, null, null, null, null, null, null); INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)";
 //            String sql = "INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)";
             pre = conn.prepareStatement(sql);
             pre.setString(1, username);
