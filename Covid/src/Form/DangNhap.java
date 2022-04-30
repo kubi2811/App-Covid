@@ -203,7 +203,7 @@ public class DangNhap extends javax.swing.JFrame {
 
             if (rs.next()) {
                 if (rs.getString("quyenTruyCap").equalsIgnoreCase("staff")) {
-                    UserForm uf =  new UserForm();
+                    StaffForm uf =  new StaffForm();
                     uf.setVisible(true);
                     uf.setTenNV(rs.getString("tenNV"));
                     uf.setMaNV(rs.getString("maNV"));
@@ -212,7 +212,11 @@ public class DangNhap extends javax.swing.JFrame {
                     new AdminForm().setVisible(true);
                     this.dispose();
                 } else {
-                    
+                    UserForm us = new UserForm();
+                    us.setVisible(true);
+                    us.setTenNV(rs.getString("tenNV"));
+                    us.setMaNV(rs.getString("maNV"));
+                    this.dispose();
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng", "Error", 1);

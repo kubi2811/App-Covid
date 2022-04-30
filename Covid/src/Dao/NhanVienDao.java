@@ -31,7 +31,7 @@ public class NhanVienDao {
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
-                NhanVien nv = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("chucVu"), rs.getFloat("luongCoBan"), rs.getFloat("phuCap"));
+                NhanVien nv = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("namSinh"), rs.getString("diaChi"), rs.getString("thanhPho"), rs.getString("quan"), rs.getString("phuong"), rs.getString("trangThai"), rs.getString("noiDieuTri"), rs.getString("lienQuan"), rs.getString("lichSuCovid"));
                 nvList.add(nv);
             }
         } catch (SQLException ex) {
@@ -62,18 +62,24 @@ public class NhanVienDao {
             conn = JDBCConnection.getConnection();
             String passDefault = "password";
 //            String sql = "insert into NhanVien values(?,?,?,?,?)";
-            String sql = "INSERT INTO NhanVien VALUES (?, ?, ?, ?, ?); insert into TaiKhoan values(?,?,?,'user')";
+            String sql = "INSERT INTO NhanVien VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); insert into TaiKhoan values(?,?,?,'user')";
 //            INSERT INTO NhanVien VALUES (?, ?, null, null, null); insert into TaiKhoan values(?,?,?,?)
             pre = conn.prepareStatement(sql);
             pre.setString(1, nv.getMaNV());
             pre.setString(2, nv.getTenNV());
-            pre.setString(3, nv.getChucVu());
-            pre.setFloat(4, nv.getLuongCoBan());
-            pre.setFloat(5, nv.getPhuCap());
+            pre.setString(3, nv.getNamSinh());
+            pre.setString(4, nv.getDiaChi());
+            pre.setString(5, nv.getThanhPho());
+            pre.setString(6, nv.getQuan());
+            pre.setString(7, nv.getPhuong());
+            pre.setString(8, nv.getTrangThai());
+            pre.setString(9, nv.getNoiDieuTri());
+            pre.setString(10, nv.getLienQuan());
+            pre.setString(11, nv.getLichSuCovid());
             
-            pre.setString(6, nv.getMaNV());
-            pre.setString(7, nv.getMaNV());
-            pre.setString(8, passDefault);
+            pre.setString(12, nv.getMaNV());
+            pre.setString(13, nv.getMaNV());
+            pre.setString(14, passDefault);
 //            pre.setString(9, nv.getMaNV());
 
             pre.executeUpdate();
@@ -103,13 +109,20 @@ public class NhanVienDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update NhanVien set tenNV = ?, chucVu = ?, luongCoBan = ?, phuCap = ? where maNV = ?";
+            String sql = "update NhanVien set tenNV = ?, namSinh = ?, diaChi = ?, thanhPho = ?, quan = ?, phuong = ?, trangThai = ?, noiDieuTri = ?, lienQuan = ?, lichSuCovid = ? where maNV = ?";
             pre = conn.prepareStatement(sql);
             pre.setString(1, nv.getTenNV());
-            pre.setString(2, nv.getChucVu());
-            pre.setFloat(3, nv.getLuongCoBan());
-            pre.setFloat(4, nv.getPhuCap());
-            pre.setString(5, nv.getMaNV());
+            pre.setString(2, nv.getNamSinh());
+            pre.setString(3, nv.getDiaChi());
+            pre.setString(4, nv.getThanhPho());
+            pre.setString(5, nv.getQuan());
+            pre.setString(6, nv.getPhuong());
+            pre.setString(7, nv.getTrangThai());
+            pre.setString(8, nv.getNoiDieuTri());
+            pre.setString(9, nv.getLienQuan());
+            pre.setString(10, nv.getLichSuCovid());
+            
+            pre.setString(11, nv.getMaNV());
 
             pre.executeUpdate();
 
@@ -176,7 +189,7 @@ public class NhanVienDao {
             pre.setString(1, "%"+tenNV+"%");
             rs = pre.executeQuery();
             while (rs.next()) {
-                NhanVien sp = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("chucVu"), rs.getFloat("luongCoBan"), rs.getFloat("phuCap"));
+                NhanVien sp = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("namSinh"), rs.getString("diaChi"), rs.getString("thanhPho"), rs.getString("quan"), rs.getString("phuong"), rs.getString("trangThai"), rs.getString("noiDieuTri"), rs.getString("lienQuan"), rs.getString("lichSuCovid"));
                 nvList.add(sp);
             }
         } catch (SQLException ex) {

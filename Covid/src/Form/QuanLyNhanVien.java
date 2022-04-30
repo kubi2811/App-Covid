@@ -44,10 +44,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             tableModel.addRow(new Object[]{
                 nv.getMaNV(),
                 nv.getTenNV(),
-                nv.getChucVu(),
-                nv.getLuongCoBan(),
-                nv.getPhuCap(),
-                nv.tinhLuong(nv.getLuongCoBan(), nv.getPhuCap()),
+                nv.getNamSinh(),
+                nv.getDiaChi(),
+                nv.getThanhPho(),
+                nv.getQuan(),
+                nv.getPhuong(),
+                nv.getTrangThai(),
+                nv.getNoiDieuTri(),
+                nv.getLienQuan(),
+                nv.getLichSuCovid(),
             });
         }
     }
@@ -70,13 +75,13 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtTenNV = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtLuongCoBan = new javax.swing.JTextField();
+        namSinhVar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtPhuCap = new javax.swing.JTextField();
-        txtChucVu = new javax.swing.JTextField();
+        diaChiVar = new javax.swing.JTextField();
+        trangThaiVar = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        cbQuyenTruyCap = new javax.swing.JComboBox<>();
+        noiDieuTriVar = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         thanhPhoVar = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
@@ -84,9 +89,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         phuongVar = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        txtTenNV1 = new javax.swing.JTextField();
+        lienQuanVar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtTenNV2 = new javax.swing.JTextField();
+        lichSuCovidVar = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -158,7 +163,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel11.setText("Nơi điều trị");
 
-        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bệnh viện Chợ Rẫy", "Bệnh viện Nhi Đồng", "Bệnh viện Ung Bướu", "Bệnh viện Nhiệt Đới", "Bệnh viện Thống Nhất" }));
+        noiDieuTriVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bệnh viện Chợ Rẫy", "Bệnh viện Nhi Đồng", "Bệnh viện Ung Bướu", "Bệnh viện Nhiệt Đới", "Bệnh viện Thống Nhất" }));
 
         jLabel12.setText("Thành Phố");
 
@@ -198,7 +203,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(26, 26, 26)
-                        .addComponent(txtTenNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lienQuanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -219,18 +224,18 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(txtLuongCoBan, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(namSinhVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trangThaiVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTenNV2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -241,7 +246,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                         .addComponent(jLabel13)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(noiDieuTriVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(quanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +258,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(phuongVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPhuCap, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))))
+                            .addComponent(diaChiVar, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))))
                 .addGap(35, 35, 35))
         );
         jPanel3Layout.setVerticalGroup(
@@ -263,22 +268,22 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
-                        .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trangThaiVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)
-                        .addComponent(txtLuongCoBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(namSinhVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
                         .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)
-                        .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(noiDieuTriVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(txtPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(diaChiVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -290,9 +295,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(txtTenNV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lienQuanVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(txtTenNV2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -379,11 +384,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã bệnh nhân", "Tên bệnh nhân", "Chức vụ", "Lương cơ bản", "Phụ cấp", "Tính lương"
+                "CCCD", "Tên", "Năm Sinh", "Địa chỉ", "Thành Phố", "Quận", "Phường", "Trạng thái", "Nơi điều trị", "Liên Quan", "Lịch Sử Covid"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -397,9 +402,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblDanhSach);
-        if (tblDanhSach.getColumnModel().getColumnCount() > 0) {
-            tblDanhSach.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -433,7 +435,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new AdminForm().setVisible(true);
+        new StaffForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -446,9 +448,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         txtMaNV.setText("");
-        txtChucVu.setText("");
-        txtLuongCoBan.setText("");
-        txtPhuCap.setText("");
+        trangThaiVar.setText("");
+        namSinhVar.setText("");
+        diaChiVar.setText("");
         txtTenNV.setText("");
         txtMaNV.setEnabled(true);
         btnSua.setEnabled(false);
@@ -467,17 +469,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Tên nhân viên không để trống");
             return;
         }
-        String chucVu = txtChucVu.getText();
-        if(chucVu.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Chức vụ không để trống");
-            return;
-        }
+        
         try{
-            float luongCoBan = Float.parseFloat(txtLuongCoBan.getText());
-            float phuCap = Float.parseFloat(txtPhuCap.getText());
-            
             if(checkMaNV(txtMaNV.getText())){
-                NhanVien nv = new NhanVien(maNV, tenNV, chucVu, luongCoBan, phuCap);
+                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiVar.getText(), noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), lichSuCovidVar.getText());
                 NhanVienDao.insert(nv);
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Mã nhân viên không được trùng");
@@ -501,12 +496,20 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
             txtMaNV.setEnabled(false);
+            noiDieuTriVar.setEnabled(false);
             
             txtTenNV.setText(nv.getTenNV().trim());
             txtMaNV.setText(nv.getMaNV().trim());
-            txtChucVu.setText(nv.getChucVu().trim());
-            txtLuongCoBan.setText(String.valueOf(nv.getLuongCoBan()));
-            txtPhuCap.setText(String.valueOf(nv.getPhuCap()));
+            namSinhVar.setText(nv.getNamSinh().trim());
+            diaChiVar.setText(nv.getDiaChi().trim());
+            thanhPhoVar.setSelectedItem(nv.getThanhPho().trim());
+            quanVar.setSelectedItem(nv.getQuan().trim());
+            phuongVar.setSelectedItem(nv.getPhuong().trim());
+            trangThaiVar.setText(nv.getTrangThai().trim());
+            noiDieuTriVar.setSelectedItem(nv.getNoiDieuTri().trim());
+            lienQuanVar.setText(nv.getLienQuan().trim());
+            lichSuCovidVar.setText(nv.getLichSuCovid().trim());
+            
         }
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
@@ -533,18 +536,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Tên nhân viên không để trống");
             return;
         }
-        String chucVu = txtChucVu.getText();
-        if(chucVu.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Chức vụ không để trống");
-            return;
-        }
-        try{
-            float luongCoBan = Float.parseFloat(txtLuongCoBan.getText());
-            float phuCap = Float.parseFloat(txtPhuCap.getText());
-            
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(rootPane, "Nhập số và không để trống");
-        }
+        
+//        try{
+//            float luongCoBan = Float.parseFloat(namSinhVar.getText());
+//            float phuCap = Float.parseFloat(diaChiVar.getText());
+//            
+//        }catch(NumberFormatException ex){
+//            JOptionPane.showMessageDialog(rootPane, "Nhập số và không để trống");
+//        }
         
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
@@ -552,9 +551,16 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
             s.setMaNV(txtMaNV.getText().trim());
             s.setTenNV(txtTenNV.getText().trim());
-            s.setChucVu(txtChucVu.getText().trim());
-            s.setLuongCoBan(Float.parseFloat(txtLuongCoBan.getText()));
-            s.setPhuCap(Float.parseFloat(txtPhuCap.getText()));
+            s.setNamSinh(namSinhVar.getText().trim());
+            s.setDiaChi(diaChiVar.getText().trim());
+            s.setThanhPho(thanhPhoVar.getSelectedItem().toString().trim());
+            s.setQuan(quanVar.getSelectedItem().toString().trim());
+            s.setPhuong(phuongVar.getSelectedItem().toString().trim());
+            s.setTrangThai(trangThaiVar.getText().trim());
+            s.setNoiDieuTri(noiDieuTriVar.getSelectedItem().toString().trim());
+            s.setLienQuan(lienQuanVar.getText().trim());
+            s.setLichSuCovid(lichSuCovidVar.getText().trim());
+            
             NhanVienDao.update(s);
             
             getData();
@@ -575,10 +581,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     tableModel.addRow(new Object[]{
                         nv.getMaNV(),
                         nv.getTenNV(),
-                        nv.getChucVu(),
-                        nv.getLuongCoBan(),
-                        nv.getPhuCap(),
-                        nv.tinhLuong(nv.getLuongCoBan(), nv.getPhuCap())
+                        nv.getNamSinh(),
+                        nv.getDiaChi(),
+                        nv.getThanhPho(),
+                        nv.getQuan(),
+                        nv.getPhuong(),
+                        nv.getTrangThai(),
+                        nv.getNoiDieuTri(),
+                        nv.getLienQuan(),
+                        nv.getLichSuCovid(),
                     });
                 }
             } else {
@@ -707,7 +718,7 @@ DefaultComboBoxModel model;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbQuyenTruyCap;
+    private javax.swing.JTextField diaChiVar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -724,16 +735,16 @@ DefaultComboBoxModel model;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField lichSuCovidVar;
+    private javax.swing.JTextField lienQuanVar;
+    private javax.swing.JTextField namSinhVar;
+    private javax.swing.JComboBox<String> noiDieuTriVar;
     private javax.swing.JComboBox<String> phuongVar;
     private javax.swing.JComboBox<String> quanVar;
     private javax.swing.JTable tblDanhSach;
     private javax.swing.JComboBox<String> thanhPhoVar;
-    private javax.swing.JTextField txtChucVu;
-    private javax.swing.JTextField txtLuongCoBan;
+    private javax.swing.JTextField trangThaiVar;
     private javax.swing.JTextField txtMaNV;
-    private javax.swing.JTextField txtPhuCap;
     private javax.swing.JTextField txtTenNV;
-    private javax.swing.JTextField txtTenNV1;
-    private javax.swing.JTextField txtTenNV2;
     // End of variables declaration//GEN-END:variables
 }
