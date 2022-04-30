@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,8 +27,10 @@ public class DangNhap extends javax.swing.JFrame {
 
     public DangNhap() {
         initComponents();
+        
         setResizable(false);
         setLocationRelativeTo(null);
+        checkAdmin();
     }
 
     /**
@@ -88,7 +91,7 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Quyền truy cập");
 
-        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
+        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff", "User" }));
 
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255)));
@@ -199,15 +202,17 @@ public class DangNhap extends javax.swing.JFrame {
             rs = pre.executeQuery();
 
             if (rs.next()) {
-                if (rs.getString("quyenTruyCap").equalsIgnoreCase("user")) {
+                if (rs.getString("quyenTruyCap").equalsIgnoreCase("staff")) {
                     UserForm uf =  new UserForm();
                     uf.setVisible(true);
                     uf.setTenNV(rs.getString("tenNV"));
                     uf.setMaNV(rs.getString("maNV"));
                     this.dispose();
-                } else {
+                } else if (rs.getString("quyenTruyCap").equalsIgnoreCase("admin")){
                     new AdminForm().setVisible(true);
                     this.dispose();
+                } else {
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng", "Error", 1);
@@ -239,6 +244,30 @@ public class DangNhap extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
+    public static boolean checkAdmin(){
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "Select * from NhanVien";
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+
+            int count = 0;
+            while (rs.next()){
+                count++;
+            }
+            if (count == 0) {
+//                
+                return false;
+            }
+        } catch (Exception ex) {
+            System.out.println("Lỗi: " + ex);
+        }
+        return true;
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -270,7 +299,12 @@ public class DangNhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DangNhap().setVisible(true);
+                if (checkAdmin() == false){
+                    new DangNhapFirst().setVisible(true);
+                }
+                else{
+                    new DangNhap().setVisible(true);
+                }
             }
         });
 

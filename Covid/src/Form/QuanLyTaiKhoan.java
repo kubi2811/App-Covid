@@ -35,7 +35,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        loadMaNV();
+//        loadMaNV();
         tableModel = (DefaultTableModel) tblDanhSach.getModel();
         getData();
         btnSua.setEnabled(false);
@@ -47,7 +47,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         tkList = TaiKhoanDao.getAll();
         for (TaiKhoan tk : tkList) {
             tableModel.addRow(new Object[]{
-                tk.getMaNV(),
+//                tk.getMaNV(),
                 tk.getUser(),
                 tk.getPassword(),
                 tk.getQuyenTruyCap()
@@ -55,23 +55,23 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         }
     }
 
-    private void loadMaNV() {
-        Connection conn = null;
-        PreparedStatement pre = null;
-        ResultSet rs = null;
-        cbMaNV.removeAllItems();
-        try {
-            conn = JDBCConnection.getConnection();
-            String sql = "select * from NhanVien";
-            pre = conn.prepareStatement(sql);
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                cbMaNV.addItem(rs.getString("maNV").trim());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void loadMaNV() {
+//        Connection conn = null;
+//        PreparedStatement pre = null;
+//        ResultSet rs = null;
+//        cbMaNV.removeAllItems();
+//        try {
+//            conn = JDBCConnection.getConnection();
+//            String sql = "select * from NhanVien";
+//            pre = conn.prepareStatement(sql);
+//            rs = pre.executeQuery();
+//            while (rs.next()) {
+//                cbMaNV.addItem(rs.getString("maNV").trim());
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,14 +87,12 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        cbQuyenTruyCap = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        txtTenDangNhap = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JTextField();
-        cbQuyenTruyCap = new javax.swing.JComboBox<>();
-        cbMaNV = new javax.swing.JComboBox<>();
+        txtTenDangNhap = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -154,55 +152,49 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setText("Mã nhân viên");
+        jLabel7.setText("Vai trò");
 
-        jLabel7.setText("Quyền truy cập");
+        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff" }));
 
         jLabel8.setText("Tên đăng nhập");
 
         jLabel9.setText("Mật khẩu");
 
-        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbQuyenTruyCap, 0, 162, Short.MAX_VALUE)
-                    .addComponent(cbMaNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(114, 114, 114)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel7)
+                        .addGap(31, 31, 31)
+                        .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel8)
                     .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,11 +280,11 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã nhân viên", "Tên đăng nhập", "Mật khẩu", "Quyền truy cập"
+                "Tên đăng nhập", "Mật khẩu", "Vai trò"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -317,7 +309,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -330,7 +322,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -353,14 +345,14 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtMatKhau.setText("");
         txtTenDangNhap.setText("");
-        loadMaNV();
+//        loadMaNV();
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        String maNV = cbMaNV.getSelectedItem().toString().trim();
+//        String maNV = cbMaNV.getText().trim();
         String user = txtTenDangNhap.getText().trim();
         if (user.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập không để trống");
@@ -371,10 +363,10 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Mật khẩu không để trống");
             return;
         }
-        String quyenTruyCap = cbQuyenTruyCap.getSelectedItem().toString().trim();
+        String quyenTruyCap = "staff";
         try {
             if (checkMaNV()) {
-                TaiKhoan tk = new TaiKhoan(maNV, user, password, quyenTruyCap);
+                TaiKhoan tk = new TaiKhoan(user, user, password, quyenTruyCap);
                 TaiKhoanDao.insert(tk);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Mã nhân viên đã tồn tại");
@@ -394,11 +386,11 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
             TaiKhoan tk = tkList.get(row);
-            btnSua.setEnabled(true);
+//            btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
 
-            cbMaNV.removeAllItems();
-            cbMaNV.addItem(tk.getMaNV().trim());
+//            cbMaNV.removeAllItems();
+//            cbMaNV.addItem(tk.getMaNV().trim());
 
             cbQuyenTruyCap.setSelectedItem(tk.getQuyenTruyCap().trim());
             txtMatKhau.setText(tk.getPassword().trim());
@@ -437,7 +429,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         if (row >= 0) {
             TaiKhoan s = tkList.get(row);
 
-            s.setMaNV(cbMaNV.getSelectedItem().toString().trim());
+            s.setMaNV(txtTenDangNhap.getText().trim());
             s.setUser(txtTenDangNhap.getText().trim());
             s.setPassword(txtMatKhau.getText().trim());
             s.setQuyenTruyCap(cbQuyenTruyCap.getSelectedItem().toString().trim());
@@ -454,7 +446,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         tkList = TaiKhoanDao.sortBytenNV();
         for (TaiKhoan tk : tkList) {
             tableModel.addRow(new Object[]{
-                tk.getMaNV(),
+//                tk.getMaNV(),
                 tk.getUser(),
                 tk.getPassword(),
                 tk.getQuyenTruyCap()
@@ -464,7 +456,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
     private boolean checkMaNV() {
         for (TaiKhoan tk : tkList) {
-            if (tk.getMaNV().trim().equalsIgnoreCase(cbMaNV.getSelectedItem().toString().trim())) {
+            if (tk.getMaNV().trim().equalsIgnoreCase(txtTenDangNhap.getText().trim())) {
                 return false;
             }
         }
@@ -529,10 +521,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbMaNV;
     private javax.swing.JComboBox<String> cbQuyenTruyCap;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

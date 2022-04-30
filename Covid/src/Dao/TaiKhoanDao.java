@@ -28,7 +28,7 @@ public class TaiKhoanDao {
         PreparedStatement pre = null;
         ResultSet rs = null;
 
-        String sql = "select * from TaiKhoan";
+        String sql = "select * from TaiKhoan where quyenTruyCap = 'staff'";
         try {
             conn = JDBCConnection.getConnection();
             pre = conn.prepareStatement(sql);
@@ -63,12 +63,16 @@ public class TaiKhoanDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into TaiKhoan values(?,?,?,?)";
+            String sql = "INSERT INTO NhanVien VALUES (?, ?, null, null, null); insert into TaiKhoan values(?,?,?,?)";
+//            INSERT INTO NhanVien VALUES (?, ?, null, null, null); INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)
             pre = conn.prepareStatement(sql);
-            pre.setString(1, tk.getMaNV());
+            pre.setString(1, tk.getUser());
             pre.setString(2, tk.getUser());
-            pre.setString(3, tk.getPassword());
-            pre.setString(4, tk.getQuyenTruyCap());
+            
+            pre.setString(3, tk.getUser());
+            pre.setString(4, tk.getUser());
+            pre.setString(5, tk.getPassword());
+            pre.setString(6, tk.getQuyenTruyCap());
 
             pre.executeUpdate();
 
@@ -164,7 +168,7 @@ public class TaiKhoanDao {
         ResultSet rs = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from TaiKhoan order by username";
+            String sql = "select * from TaiKhoan where quyenTruyCap = 'staff' order by username";
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while(rs.next()){
