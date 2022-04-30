@@ -70,7 +70,7 @@ public class UserForm extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("  Quyền truy cập: Nhân viên");
+        jLabel3.setText("  Quyền truy cập: Staff");
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -143,7 +143,7 @@ public class UserForm extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel6.setText("Quản lý hoá đơn");
+        jLabel6.setText("Quản lý bệnh nhân");
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnThoat.setText("Thoát");
@@ -164,7 +164,7 @@ public class UserForm extends javax.swing.JFrame {
         });
 
         lblTenNV.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        lblTenNV.setText("Tên nhân viên: ");
+        lblTenNV.setText("Tên Staff: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,9 +272,11 @@ public class UserForm extends javax.swing.JFrame {
 
     private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
         // TODO add your handling code here:
-        QuanLyHoaDon hd = new QuanLyHoaDon();
-        hd.setVisible(true);
-        hd.setMaNV(this.getMaNV());
+        new QuanLyNhanVien().setVisible(true);
+        this.dispose();
+//        QuanLyHoaDon hd = new QuanLyHoaDon();
+//        hd.setVisible(true);
+//        hd.setMaNV(this.getMaNV());
     }//GEN-LAST:event_btnQLHoaDonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

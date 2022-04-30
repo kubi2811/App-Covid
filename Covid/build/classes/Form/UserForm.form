@@ -115,7 +115,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="  Quy&#x1ec1;n truy c&#x1ead;p: Nh&#xe2;n vi&#xea;n"/>
+            <Property name="text" type="java.lang.String" value="  Quy&#x1ec1;n truy c&#x1ead;p: Staff"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder>
@@ -322,7 +322,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; ho&#xe1; &#x111;&#x1a1;n"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; b&#x1ec7;nh nh&#xe2;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnThoat">
@@ -366,7 +366,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n nh&#xe2;n vi&#xea;n: "/>
+            <Property name="text" type="java.lang.String" value="T&#xea;n Staff: "/>
           </Properties>
         </Component>
       </SubComponents>

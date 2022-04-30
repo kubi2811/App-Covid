@@ -27,7 +27,7 @@ public class NhanVienDao {
         ResultSet rs = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from NhanVien";
+            String sql = "SELECT * FROM NhanVien INNER JOIN TaiKhoan ON NhanVien.maNV=TaiKhoan.maNV where TaiKhoan.quyenTruyCap = 'user';";
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
@@ -60,13 +60,21 @@ public class NhanVienDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into NhanVien values(?,?,?,?,?)";
+            String passDefault = "password";
+//            String sql = "insert into NhanVien values(?,?,?,?,?)";
+            String sql = "INSERT INTO NhanVien VALUES (?, ?, ?, ?, ?); insert into TaiKhoan values(?,?,?,'user')";
+//            INSERT INTO NhanVien VALUES (?, ?, null, null, null); insert into TaiKhoan values(?,?,?,?)
             pre = conn.prepareStatement(sql);
             pre.setString(1, nv.getMaNV());
             pre.setString(2, nv.getTenNV());
             pre.setString(3, nv.getChucVu());
             pre.setFloat(4, nv.getLuongCoBan());
             pre.setFloat(5, nv.getPhuCap());
+            
+            pre.setString(6, nv.getMaNV());
+            pre.setString(7, nv.getMaNV());
+            pre.setString(8, passDefault);
+//            pre.setString(9, nv.getMaNV());
 
             pre.executeUpdate();
 

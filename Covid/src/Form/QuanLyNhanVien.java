@@ -44,7 +44,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 nv.getChucVu(),
                 nv.getLuongCoBan(),
                 nv.getPhuCap(),
-                nv.tinhLuong(nv.getLuongCoBan(), nv.getPhuCap())
+                nv.tinhLuong(nv.getLuongCoBan(), nv.getPhuCap()),
             });
         }
     }
@@ -86,7 +86,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Quản lý nhân viên");
+        jLabel1.setText("Quản lý bệnh nhân");
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/backsmall.png"))); // NOI18N
@@ -190,7 +190,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(txtPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -276,7 +276,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã nhân viên", "Tên nhân viên", "Chức vụ", "Lương cơ bản", "Phụ cấp", "Tính lương"
+                "Mã bệnh nhân", "Tên bệnh nhân", "Chức vụ", "Lương cơ bản", "Phụ cấp", "Tính lương"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -294,6 +294,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblDanhSach);
+        if (tblDanhSach.getColumnModel().getColumnCount() > 0) {
+            tblDanhSach.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
