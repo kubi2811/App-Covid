@@ -162,7 +162,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel12.setText("Thành Phố");
 
-        thanhPhoVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hồ Chí Minh", "Đà Lạt", "Cần Thơ", "Đà Nẵng", "Hải Phòng" }));
+        thanhPhoVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hồ Chí Minh", "Bến Tre", "Cần Thơ", "Đà Nẵng", "Hải Phòng" }));
         thanhPhoVar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 thanhPhoVarMouseClicked(evt);
@@ -174,7 +174,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Quận");
+        jLabel13.setText("Quận/Huyện");
 
         quanVar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,23 +225,24 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTenNV2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(20, 20, 20))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel11))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(quanVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbQuyenTruyCap, 0, 174, Short.MAX_VALUE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTenNV2)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -290,9 +291,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(txtTenNV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16)
-                        .addComponent(txtTenNV2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel16)
+                    .addComponent(txtTenNV2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -601,20 +601,20 @@ DefaultComboBoxModel model;
             String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
             model = new DefaultComboBoxModel(tp1);
             quanVar.setModel(model);
-        } else if(thanhPhoVar.getSelectedItem().toString() == "Đà Lạt"){
-            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+        } else if(thanhPhoVar.getSelectedItem().toString() == "Bến Tre"){
+            String tp1[] = { "Huyện Bình Đại", "Huyện Châu Thành", "Huyện Giồng Trôm", "Huyện Ba Tri", "Huyện Chợ Lách" };
             model = new DefaultComboBoxModel(tp1);
             quanVar.setModel(model);
         } else if(thanhPhoVar.getSelectedItem().toString() == "Cần Thơ"){
-            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            String tp1[] = { "Quận Ninh Kiều", "Quận Bình Thuỷ", "Quận Cái Răng", "Quận Ô Môn", "Huyện Phong Điền" };
             model = new DefaultComboBoxModel(tp1);
             quanVar.setModel(model);
         } else if(thanhPhoVar.getSelectedItem().toString() == "Đà Nẵng"){
-            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            String tp1[] = { "Quận Cẩm Lệ", "Quận Hải Châu", "Quận Liên Chiểu", "Quận Ngũ Hành Sơn", "Quận Sơn Trà" };
             model = new DefaultComboBoxModel(tp1);
             quanVar.setModel(model);
         } else if(thanhPhoVar.getSelectedItem().toString() == "Hải Phòng"){
-            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            String tp1[] = { "Quận Hồng Bàng", "Quận Lê Chân", "Quận Ngô Quyền", "Quận Kiến An", "Quận Hải An" };
             model = new DefaultComboBoxModel(tp1);
             quanVar.setModel(model);
         }
