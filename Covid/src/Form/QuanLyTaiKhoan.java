@@ -19,10 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Ho Nam
- */
+
 public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
     /**

@@ -28,10 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author Ho Nam
- */
+
 public class ThongKeDoanhSo extends javax.swing.JFrame {
 
     /**

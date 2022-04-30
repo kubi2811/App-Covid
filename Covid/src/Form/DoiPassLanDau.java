@@ -1,10 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Form;
-
 import Connect.JDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,23 +10,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-public class DangNhap extends javax.swing.JFrame {
+/**
+ *
+ * @author ranco
+ */
+public class DoiPassLanDau extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginForm
+     * Creates new form DoiPassLanDau
      */
-    static String maNV;
-
-    public DangNhap() {
-        initComponents();
-        
-        setResizable(false);
-        setLocationRelativeTo(null);
-        checkAdmin();
+    String maNV;
+    public String getMaNV() {
+        return maNV;
     }
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+    public DoiPassLanDau() {
+        initComponents();
+        setEnabled();
+    }
+    
+    Connection conn = null;
+    PreparedStatement pre = null;
+    ResultSet rs = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,13 +49,11 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtTenDangNhap = new javax.swing.JTextField();
+        oldPassVar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtMatKhau = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        cbQuyenTruyCap = new javax.swing.JComboBox<>();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
+        newPassVar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,39 +62,36 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 255));
-        jLabel1.setText("Đăng nhập hệ thống");
+        jLabel1.setText("Đổi password lần đầu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel1)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Tên đăng nhập");
+        jLabel2.setText("Mật khẩu cũ:");
+
+        oldPassVar.setText("password");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Mật khẩu");
+        jLabel3.setText("Mật khẩu mới: ");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Quyền truy cập");
-
-        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff", "User" }));
-
-        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setText("Xác Nhận");
         btnDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255)));
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,19 +117,17 @@ public class DangNhap extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTenDangNhap)
-                            .addComponent(txtMatKhau)
-                            .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(oldPassVar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newPassVar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
                         .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,20 +135,16 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oldPassVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbQuyenTruyCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(newPassVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,60 +169,31 @@ public class DangNhap extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        String username = txtTenDangNhap.getText();
-        String pass = txtMatKhau.getText();
-        String option = cbQuyenTruyCap.getSelectedItem().toString();
+//        String username = oldPassVar.getText();
+//        String pass = newPassVar.getText();
+//        String option = cbQuyenTruyCap.getSelectedItem().toString();
 
-        if (username.isEmpty() || pass.isEmpty()) {
+        if (oldPassVar.getText().isEmpty() || newPassVar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Thông tin nhập không được trống", "Error", 1);
             return;
         }
-        Connection conn = null;
-        PreparedStatement pre = null;
-        ResultSet rs = null;
+
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "Select * from TaiKhoan inner join NhanVien on TaiKhoan.maNV = NhanVien.maNV where username = ? and pass = ? and quyenTruyCap = ?";
+            //            String sql = "Select * from TaiKhoan inner join NhanVien on TaiKhoan.maNV = NhanVien.maNV where username = ? and pass = ? and quyenTruyCap = ?";
+            String sql = "UPDATE TaiKhoan SET pass = ? WHERE maNV = ?";
+            //            String sql = "INSERT INTO TaiKhoan VALUES (?, ?, ?, ?)";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, username);
-            pre.setString(2, pass);
-            pre.setString(3, option);
+            pre.setString(1, newPassVar.getText());
+            pre.setString(2, maNV);
+
             rs = pre.executeQuery();
 
-            if (rs.next()) {
-                if (rs.getString("quyenTruyCap").equalsIgnoreCase("staff")) {
-                    StaffForm uf =  new StaffForm();
-                    uf.setVisible(true);
-                    uf.setTenNV(rs.getString("tenNV"));
-                    uf.setMaNV(rs.getString("maNV"));
-                    this.dispose();
-                } else if (rs.getString("quyenTruyCap").equalsIgnoreCase("admin")){
-                    new AdminForm().setVisible(true);
-                    this.dispose();
-                } else {
-                   if(rs.getString("pass").trim().equals("password")){
-                       DoiPassLanDau dp = new DoiPassLanDau();
-                       dp.setMaNV(rs.getString("maNV"));
-                       dp.setVisible(true);
-                       
-                       this.dispose();
-                   } else {
-                        UserForm us = new UserForm();
-                        us.setVisible(true);
-                        us.setTenNV(rs.getString("tenNV"));
-                        us.setMaNV(rs.getString("maNV"));
-                        System.out.print(rs.getString("pass"));
-                        this.dispose();
-                   }
-                    
-                }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng", "Error", 1);
-            }
         } catch (Exception ex) {
             System.out.println("Lỗi: " + ex);
         } finally {
@@ -246,38 +212,17 @@ public class DangNhap extends javax.swing.JFrame {
                 }
             }
         }
-
+        this.dispose();
+        new DangNhap().setVisible(true);
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
-    
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
-    public static boolean checkAdmin(){
-        Connection conn = null;
-        PreparedStatement pre = null;
-        ResultSet rs = null;
-        try {
-            conn = JDBCConnection.getConnection();
-            String sql = "Select * from NhanVien";
-            pre = conn.prepareStatement(sql);
-            rs = pre.executeQuery();
-
-            int count = 0;
-            while (rs.next()){
-                count++;
-            }
-            if (count == 0) {
-//                
-                return false;
-            }
-        } catch (Exception ex) {
-            System.out.println("Lỗi: " + ex);
-        }
-        return true;
-        
+    public void setEnabled(){
+        oldPassVar.setEnabled(false);
     }
     /**
      * @param args the command line arguments
@@ -296,42 +241,34 @@ public class DangNhap extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoiPassLanDau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoiPassLanDau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoiPassLanDau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoiPassLanDau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                if (checkAdmin() == false){
-                    new DangNhapFirst().setVisible(true);
-                }
-                else{
-                    new DangNhap().setVisible(true);
-                }
+                new DoiPassLanDau().setVisible(true);
+                
             }
         });
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JComboBox<String> cbQuyenTruyCap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField txtMatKhau;
-    private javax.swing.JTextField txtTenDangNhap;
+    private javax.swing.JTextField newPassVar;
+    private javax.swing.JTextField oldPassVar;
     // End of variables declaration//GEN-END:variables
 }

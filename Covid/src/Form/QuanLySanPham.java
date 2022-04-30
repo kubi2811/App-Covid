@@ -17,10 +17,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Ho Nam
- */
+
 public class QuanLySanPham extends javax.swing.JFrame {
 
     /**
