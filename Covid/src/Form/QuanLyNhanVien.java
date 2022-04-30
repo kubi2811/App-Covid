@@ -10,6 +10,8 @@ import Dao.TaiKhoanDao;
 import Objects.NhanVien;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +34,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         getData();
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
+        checkAddress();
     }
 
     public void getData(){
@@ -75,11 +78,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         cbQuyenTruyCap = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        cbQuyenTruyCap1 = new javax.swing.JComboBox<>();
+        thanhPhoVar = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        cbQuyenTruyCap2 = new javax.swing.JComboBox<>();
+        quanVar = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        cbQuyenTruyCap3 = new javax.swing.JComboBox<>();
+        phuongVar = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         txtTenNV1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -159,15 +162,27 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel12.setText("Thành Phố");
 
-        cbQuyenTruyCap1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hồ Chí Minh", "Đà Lạt", "Cần Thơ", "Đà Nẵng", "Hải Phòng" }));
+        thanhPhoVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hồ Chí Minh", "Đà Lạt", "Cần Thơ", "Đà Nẵng", "Hải Phòng" }));
+        thanhPhoVar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                thanhPhoVarMouseClicked(evt);
+            }
+        });
+        thanhPhoVar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thanhPhoVarActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Quận");
 
-        cbQuyenTruyCap2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bệnh viện Chợ Rẫy", "Bệnh viện Nhi Đồng", "Bệnh viện Ung Bướu", "Bệnh viện Nhiệt Đới", "Bệnh viện Thống Nhất" }));
+        quanVar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quanVarActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Phường");
-
-        cbQuyenTruyCap3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bệnh viện Chợ Rẫy", "Bệnh viện Nhi Đồng", "Bệnh viện Ung Bướu", "Bệnh viện Nhiệt Đới", "Bệnh viện Thống Nhất" }));
 
         jLabel15.setText("Liên quan tới");
 
@@ -195,7 +210,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                 .addComponent(jLabel12)
                                 .addGap(32, 32, 32)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbQuyenTruyCap1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(thanhPhoVar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -221,8 +236,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                         .addComponent(jLabel13)
                                         .addGap(18, 18, 18)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbQuyenTruyCap2, 0, 174, Short.MAX_VALUE)
-                                    .addComponent(cbQuyenTruyCap, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(quanVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbQuyenTruyCap, 0, 174, Short.MAX_VALUE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -236,7 +251,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbQuyenTruyCap3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(phuongVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPhuCap, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))))
                 .addGap(35, 35, 35))
         );
@@ -266,11 +281,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(cbQuyenTruyCap1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(thanhPhoVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(cbQuyenTruyCap2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quanVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(cbQuyenTruyCap3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phuongVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -574,6 +589,61 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void thanhPhoVarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thanhPhoVarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_thanhPhoVarMouseClicked
+DefaultComboBoxModel model;
+    private void thanhPhoVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanhPhoVarActionPerformed
+        // TODO add your handling code here:
+        
+        if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh"){
+            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            model = new DefaultComboBoxModel(tp1);
+            quanVar.setModel(model);
+        } else if(thanhPhoVar.getSelectedItem().toString() == "Đà Lạt"){
+            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            model = new DefaultComboBoxModel(tp1);
+            quanVar.setModel(model);
+        } else if(thanhPhoVar.getSelectedItem().toString() == "Cần Thơ"){
+            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            model = new DefaultComboBoxModel(tp1);
+            quanVar.setModel(model);
+        } else if(thanhPhoVar.getSelectedItem().toString() == "Đà Nẵng"){
+            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            model = new DefaultComboBoxModel(tp1);
+            quanVar.setModel(model);
+        } else if(thanhPhoVar.getSelectedItem().toString() == "Hải Phòng"){
+            String tp1[] = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5" };
+            model = new DefaultComboBoxModel(tp1);
+            quanVar.setModel(model);
+        }
+    }//GEN-LAST:event_thanhPhoVarActionPerformed
+
+    private void quanVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanVarActionPerformed
+        // TODO add your handling code here:
+        if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 1"){
+                String q1[] = { "Bến Nghé", "Bến Thành", "Cô Giang", "Cầu Kho", "Đa Kao" };
+                model = new DefaultComboBoxModel(q1);
+                phuongVar.setModel(model);
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 2"){
+                String q1[] = { "An Phú", "Thảo Điền", "An Khánh", "Bình Khánh", "Bình An" };
+                model = new DefaultComboBoxModel(q1);
+                phuongVar.setModel(model);
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 3"){
+                String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
+                model = new DefaultComboBoxModel(q1);
+                phuongVar.setModel(model);
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 4"){
+                String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
+                model = new DefaultComboBoxModel(q1);
+                phuongVar.setModel(model);
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 5"){
+                String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
+                model = new DefaultComboBoxModel(q1);
+                phuongVar.setModel(model);
+        }
+    }//GEN-LAST:event_quanVarActionPerformed
     private boolean checkMaNV(String maNV){
         for(NhanVien nv : nvList){
             if(nv.getMaNV().trim().equalsIgnoreCase(maNV.trim())){
@@ -581,6 +651,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         }
         return true;
+    }
+    
+    public void checkAddress(){
+        
     }
     /**
      * @param args the command line arguments
@@ -633,9 +707,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbQuyenTruyCap;
-    private javax.swing.JComboBox<String> cbQuyenTruyCap1;
-    private javax.swing.JComboBox<String> cbQuyenTruyCap2;
-    private javax.swing.JComboBox<String> cbQuyenTruyCap3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -652,7 +723,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> phuongVar;
+    private javax.swing.JComboBox<String> quanVar;
     private javax.swing.JTable tblDanhSach;
+    private javax.swing.JComboBox<String> thanhPhoVar;
     private javax.swing.JTextField txtChucVu;
     private javax.swing.JTextField txtLuongCoBan;
     private javax.swing.JTextField txtMaNV;
