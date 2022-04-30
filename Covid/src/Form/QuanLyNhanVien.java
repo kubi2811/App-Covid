@@ -622,27 +622,28 @@ DefaultComboBoxModel model;
 
     private void quanVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quanVarActionPerformed
         // TODO add your handling code here:
-        if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 1"){
+        if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh"){
                 String q1[] = { "Bến Nghé", "Bến Thành", "Cô Giang", "Cầu Kho", "Đa Kao" };
                 model = new DefaultComboBoxModel(q1);
                 phuongVar.setModel(model);
-        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 2"){
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Bến Tre"){
                 String q1[] = { "An Phú", "Thảo Điền", "An Khánh", "Bình Khánh", "Bình An" };
                 model = new DefaultComboBoxModel(q1);
                 phuongVar.setModel(model);
-        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 3"){
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Cần Thơ"){
                 String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
                 model = new DefaultComboBoxModel(q1);
                 phuongVar.setModel(model);
-        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 4"){
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Đà Nẵng"){
                 String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
                 model = new DefaultComboBoxModel(q1);
                 phuongVar.setModel(model);
-        } else if (thanhPhoVar.getSelectedItem().toString() == "Hồ Chí Minh" && quanVar.getSelectedItem().toString() == "Quận 5"){
+        } else if (thanhPhoVar.getSelectedItem().toString() == "Hải Phòng"){
                 String q1[] = { "Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5" };
                 model = new DefaultComboBoxModel(q1);
                 phuongVar.setModel(model);
-        }
+        } 
+        
     }//GEN-LAST:event_quanVarActionPerformed
     private boolean checkMaNV(String maNV){
         for(NhanVien nv : nvList){
