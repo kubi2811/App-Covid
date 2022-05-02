@@ -456,14 +456,18 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        String nameTemp = null;
+        if (lienQuanVar.getText() == ""){
+            trangThaiVar.setText("F0");
+        } 
         String maNV = txtMaNV.getText();
         if(maNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Mã nhân viên không để trống");
+            JOptionPane.showMessageDialog(rootPane, "Mã CCCD không để trống");
             return;
         }
         String tenNV = txtTenNV.getText();
         if(tenNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Tên nhân viên không để trống");
+            JOptionPane.showMessageDialog(rootPane, "Tên bệnh nhân không để trống");
             return;
         }
         
@@ -472,7 +476,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiVar.getText(), noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), lichSuCovidVar.getText());
                 NhanVienDao.insert(nv);
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Mã nhân viên không được trùng");
+                JOptionPane.showMessageDialog(rootPane, "Mã CCCD không được trùng");
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "Nhập số và không để trống");
@@ -530,7 +534,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tenNV = txtTenNV.getText();
         if(tenNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Tên nhân viên không để trống");
+            JOptionPane.showMessageDialog(rootPane, "Tên bệnh nhân không để trống");
             return;
         }
         
@@ -569,7 +573,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
         try{
-            String tenNV = JOptionPane.showInputDialog(this, "Nhập tên nhân viên cần tìm");
+            String tenNV = JOptionPane.showInputDialog(this, "Nhập tên bệnh nhân cần tìm");
 
             if (tenNV.equals("") == false) {
                 nvList = NhanVienDao.findByTenNV(tenNV);
