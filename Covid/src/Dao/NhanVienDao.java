@@ -54,6 +54,76 @@ public class NhanVienDao {
         }
         return nvList;
     }
+    
+    public static List<NhanVien> getAllAZ() {
+        List<NhanVien> nvList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "SELECT * FROM NhanVien INNER JOIN TaiKhoan ON NhanVien.maNV=TaiKhoan.maNV where TaiKhoan.quyenTruyCap = 'user' ORDER BY NhanVien.tenNV ASC;";
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                NhanVien nv = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("namSinh"), rs.getString("diaChi"), rs.getString("thanhPho"), rs.getString("quan"), rs.getString("phuong"), rs.getString("trangThai"), rs.getString("noiDieuTri"), rs.getString("lienQuan"), rs.getString("lichSuCovid"));
+                nvList.add(nv);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi: " + ex);
+        } finally {
+            if (pre != null) {
+                try {
+                    pre.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+        }
+        return nvList;
+    }
+    
+    public static List<NhanVien> getAllZA() {
+        List<NhanVien> nvList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "SELECT * FROM NhanVien INNER JOIN TaiKhoan ON NhanVien.maNV=TaiKhoan.maNV where TaiKhoan.quyenTruyCap = 'user' ORDER BY NhanVien.tenNV DESC;";
+            pre = conn.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                NhanVien nv = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getString("namSinh"), rs.getString("diaChi"), rs.getString("thanhPho"), rs.getString("quan"), rs.getString("phuong"), rs.getString("trangThai"), rs.getString("noiDieuTri"), rs.getString("lienQuan"), rs.getString("lichSuCovid"));
+                nvList.add(nv);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi: " + ex);
+        } finally {
+            if (pre != null) {
+                try {
+                    pre.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+        }
+        return nvList;
+    }
 
     public static void insert(NhanVien nv) {
         Connection conn = null;

@@ -8,6 +8,9 @@ package Form;
 import Dao.NhanVienDao;
 import Dao.TaiKhoanDao;
 import Objects.NhanVien;
+import java.awt.event.ItemEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -61,6 +64,46 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             });
         }
     }
+    
+    public void getDataAZ(){
+        nvList = NhanVienDao.getAllAZ();
+        tableModel.setRowCount(0);
+        for (NhanVien nv : nvList) {
+            tableModel.addRow(new Object[]{
+                nv.getMaNV(),
+                nv.getTenNV(),
+                nv.getNamSinh(),
+                nv.getDiaChi(),
+                nv.getThanhPho(),
+                nv.getQuan(),
+                nv.getPhuong(),
+                nv.getTrangThai(),
+                nv.getNoiDieuTri(),
+                nv.getLienQuan(),
+                nv.getLichSuCovid(),
+            });
+        }
+    }
+    
+    public void getDataZA(){
+        nvList = NhanVienDao.getAllZA();
+        tableModel.setRowCount(0);
+        for (NhanVien nv : nvList) {
+            tableModel.addRow(new Object[]{
+                nv.getMaNV(),
+                nv.getTenNV(),
+                nv.getNamSinh(),
+                nv.getDiaChi(),
+                nv.getThanhPho(),
+                nv.getQuan(),
+                nv.getPhuong(),
+                nv.getTrangThai(),
+                nv.getNoiDieuTri(),
+                nv.getLienQuan(),
+                nv.getLichSuCovid(),
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,13 +140,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         lienQuanVar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         lichSuCovidVar = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnReset1 = new javax.swing.JButton();
+        sapXepVar = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDanhSach = new javax.swing.JTable();
 
@@ -199,6 +243,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         jLabel16.setText("Đã từng dính");
 
+        btnReset.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnReset.setText("Thống Kê");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -235,13 +287,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(trangThaiVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -253,18 +300,25 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(noiDieuTriVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(quanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18))
+                                    .addComponent(quanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addGap(18, 18, 18))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)))
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(phuongVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(diaChiVar, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))))
+                            .addComponent(diaChiVar, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(35, 35, 35))
         );
         jPanel3Layout.setVerticalGroup(
@@ -303,7 +357,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(lienQuanVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lichSuCovidVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -315,14 +370,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
-            }
-        });
-
-        btnReset.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnReset.setText("Thống Kê");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
             }
         });
 
@@ -362,20 +409,37 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         });
 
+        sapXepVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "A -> Z", "Z -> A" }));
+        sapXepVar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sapXepVarItemStateChanged(evt);
+            }
+        });
+        sapXepVar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sapXepVarMouseClicked(evt);
+            }
+        });
+        sapXepVar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sapXepVarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem)
-                .addGap(48, 48, 48)
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(sapXepVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,13 +452,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sapXepVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
@@ -450,8 +513,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -735,6 +798,34 @@ DefaultComboBoxModel model;
     private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReset1ActionPerformed
+
+    private void sapXepVarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sapXepVarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sapXepVarMouseClicked
+
+    private void sapXepVarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sapXepVarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sapXepVarActionPerformed
+
+    private void sapXepVarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sapXepVarItemStateChanged
+        // TODO add your handling code here:
+        String item = (String) evt.getItem();
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+                System.out.println(item);
+                switch (item) {
+                    case "All":
+                        getData();
+                        break;
+                    case "A -> Z":
+                        getDataAZ();
+                        break;
+                    case "Z -> A":
+                        getDataZA();
+                        break;
+                }
+        }
+        
+    }//GEN-LAST:event_sapXepVarItemStateChanged
     private boolean checkMaNV(String maNV){
         for(NhanVien nv : nvList){
             if(nv.getMaNV().trim().equalsIgnoreCase(maNV.trim())){
@@ -821,6 +912,7 @@ DefaultComboBoxModel model;
     private javax.swing.JComboBox<String> noiDieuTriVar;
     private javax.swing.JComboBox<String> phuongVar;
     private javax.swing.JComboBox<String> quanVar;
+    private javax.swing.JComboBox<String> sapXepVar;
     private javax.swing.JTable tblDanhSach;
     private javax.swing.JComboBox<String> thanhPhoVar;
     private javax.swing.JTextField trangThaiVar;
