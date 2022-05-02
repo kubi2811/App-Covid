@@ -31,6 +31,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         getData();
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
+        trangThaiVar.setEnabled(false);
+        lichSuCovidVar.setText("Có");
+        lichSuCovidVar.setEnabled(false);
         checkAddress();
     }
 
@@ -456,10 +459,23 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        String trangThaiTemp = null;
         String nameTemp = null;
-        if (lienQuanVar.getText() == ""){
-            trangThaiVar.setText("F0");
-        } 
+        if (lienQuanVar.getText().isEmpty()){
+            trangThaiTemp = "F0";
+        }
+        for (NhanVien nv : nvList) {
+            if (lienQuanVar.getText().equals(nv.getMaNV().trim())){
+                if ("F0".equals(nv.getTrangThai().trim())){
+                    trangThaiTemp = "F1";
+                } else if("F1".equals(nv.getTrangThai().trim())){
+                    trangThaiTemp = "F2";
+                } else{
+                    trangThaiTemp = "F3";
+                }
+            }
+        }
+        
         String maNV = txtMaNV.getText();
         if(maNV.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Mã CCCD không để trống");
@@ -473,8 +489,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         
         try{
             if(checkMaNV(txtMaNV.getText())){
-                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiVar.getText(), noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), lichSuCovidVar.getText());
+                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiTemp, noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), "Có");
                 NhanVienDao.insert(nv);
+                
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Mã CCCD không được trùng");
             }
