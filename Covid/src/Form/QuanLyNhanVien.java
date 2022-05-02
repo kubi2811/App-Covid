@@ -11,9 +11,14 @@ import Objects.NhanVien;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 
 
 public class QuanLyNhanVien extends javax.swing.JFrame {
@@ -467,10 +472,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        int countF0 = 0;
-        int countF1 = 0;
-        int countF2 = 0;
-        int countF3 = 0;
+        double countF0 = 0;
+        double countF1 = 0;
+        double countF2 = 0;
+        double countF3 = 0;
+        double all = 0;
         
         for (NhanVien nv : nvList) {
             if ("F0".equals(nv.getTrangThai().trim())){
@@ -484,8 +490,26 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         }
         
-         DefaultPieDataset pieDataset = new DefaultPieDataset ();
-        pieDataset.setValue("One",new Integer (10) );
+        all = countF0 + countF1 + countF2 + countF3;
+       
+        DefaultPieDataset pieDataset = new DefaultPieDataset ();
+        pieDataset.setValue("F0: " + Math.round(countF0/all *100 *100.0)/100.0 + "%", countF0);
+        pieDataset.setValue("F1: " + Math.round(countF1/all *100 *100.0)/100.0 + "%", countF1);
+        pieDataset.setValue("F2: " + Math.round(countF2/all *100 *100.0)/100.0 + "%", countF2);
+        pieDataset.setValue("F3: " + Math.round(countF3/all *100 *100.0)/100.0 + "%", countF3);
+        
+        
+        JFreeChart chart = ChartFactory.createPieChart(      
+         "Thống kê người bệnh !!!",   // chart title 
+         pieDataset,          // data    
+         true,             // include legend   
+         true, 
+         true);
+        PiePlot P = (PiePlot)chart.getPlot();
+//        P.setForegroundAlpha(TOP_ALIGNMENT);
+        ChartFrame frame = new ChartFrame("Pie Chart", chart);
+        frame.setVisible(true);
+        frame.setSize(450, 500);
        
         
     }//GEN-LAST:event_btnResetActionPerformed

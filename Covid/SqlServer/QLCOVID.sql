@@ -61,4 +61,10 @@ create table ThongKe(
 	tongDoanhThu float
 )
 
+create table LichSuDangNhap(
+	maNV nvarchar(20) primary key not null,
+	thoiGian nvarchar(30),
+	role nvarchar(10)
+)
+
 
