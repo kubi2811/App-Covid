@@ -4,19 +4,47 @@
  */
 package Form;
 
+import Dao.DiaDiemDieuTriDao;
+//import Dao.NhanVienDao;
+//import Objects.NhanVien;
+import Objects.DiaDiem;
+import Objects.NhanVien;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ranco
  */
 public class QuanLyDiaDiem extends javax.swing.JFrame {
 
+    List<DiaDiem> ddList = new ArrayList<>();
+    DefaultTableModel tableModel;
     /**
      * Creates new form QuanLyDiaDiem
      */
     public QuanLyDiaDiem() {
+        
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        tableModel = (DefaultTableModel) tblDanhSach.getModel();
+        getData();
     }
 
+    public void getData(){
+        ddList = DiaDiemDieuTriDao.getAll();
+        tableModel.setRowCount(0);
+        for (DiaDiem dd : ddList) {
+            tableModel.addRow(new Object[]{
+                dd.getTen(),
+                dd.getSoLuongHienTai(),
+                dd.getSucChua()
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +60,11 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
         btnDangXuat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtMaNV = new javax.swing.JTextField();
+        diaDiemVar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtMaNV1 = new javax.swing.JTextField();
+        soLuongVar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtMaNV2 = new javax.swing.JTextField();
+        sucChuaVar = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -97,9 +125,9 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
 
         jLabel6.setText("Địa điểm điều trị");
 
-        jLabel7.setText("Sức chứa");
+        jLabel7.setText("Số lượng hiện tại");
 
-        jLabel8.setText("Số lượng tiếp nhận");
+        jLabel8.setText("Sức chứa");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -109,30 +137,31 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addGap(26, 26, 26)
-                .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(diaDiemVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
-                .addComponent(txtMaNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(soLuongVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel8)
                 .addGap(26, 26, 26)
-                .addComponent(txtMaNV2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(sucChuaVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtMaNV2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(diaDiemVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(txtMaNV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(soLuongVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(sucChuaVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -180,11 +209,11 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(67, 67, 67)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(88, 88, 88)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
@@ -207,7 +236,7 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Địa điểm điều trị / cách ly", "Sức chứa", "Số lượng tiếp nhận"
+                "Địa điểm điều trị / cách ly", "Số lượng hiện tại", "Sức chứa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -270,41 +299,19 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        String trangThaiTemp = null;
-        String nameTemp = null;
-        if (lienQuanVar.getText().isEmpty()){
-            trangThaiTemp = "F0";
-        }
-        for (NhanVien nv : nvList) {
-            if (lienQuanVar.getText().equals(nv.getMaNV().trim())){
-                if ("F0".equals(nv.getTrangThai().trim())){
-                    trangThaiTemp = "F1";
-                } else if("F1".equals(nv.getTrangThai().trim())){
-                    trangThaiTemp = "F2";
-                } else{
-                    trangThaiTemp = "F3";
-                }
-            }
-        }
-
-        String maNV = txtMaNV.getText();
-        if(maNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Mã CCCD không để trống");
+        if(diaDiemVar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Tên địa điểm không để trống");
             return;
         }
-        String tenNV = txtTenNV.getText();
-        if(tenNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Tên bệnh nhân không để trống");
-            return;
-        }
+       
 
         try{
-            if(checkMaNV(txtMaNV.getText())){
-                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiTemp, noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), "Có");
-                NhanVienDao.insert(nv);
+            if(!diaDiemVar.getText().trim().equals("")){
+                DiaDiem dd = new DiaDiem(diaDiemVar.getText(), Integer.valueOf(soLuongVar.getText()), Integer.valueOf(sucChuaVar.getText()));
+                DiaDiemDieuTriDao.insert(dd);
 
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Mã CCCD không được trùng");
+                JOptionPane.showMessageDialog(rootPane, "Tên địa điểm không được trùng");
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "Nhập số và không để trống");
@@ -312,56 +319,38 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
         getData();
-        txtMaNV.setEnabled(true);
+        diaDiemVar.setEnabled(true);
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtMaNV.setText("");
-        trangThaiVar.setText("");
-        namSinhVar.setText("");
-        diaChiVar.setText("");
-        txtTenNV.setText("");
-        txtMaNV.setEnabled(true);
+        diaDiemVar.setText("");
+        soLuongVar.setText("");
+        sucChuaVar.setText("");
+        
+        diaDiemVar.setEnabled(true);
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        String tenNV = txtTenNV.getText();
-        if(tenNV.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Tên bệnh nhân không để trống");
+        if(diaDiemVar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Tên địa điểm không để trống");
             return;
         }
 
-        //        try{
-            //            float luongCoBan = Float.parseFloat(namSinhVar.getText());
-            //            float phuCap = Float.parseFloat(diaChiVar.getText());
-            //
-            //        }catch(NumberFormatException ex){
-            //            JOptionPane.showMessageDialog(rootPane, "Nhập số và không để trống");
-            //        }
-
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
-            NhanVien s = nvList.get(row);
+            DiaDiem d = ddList.get(row);
 
-            s.setMaNV(txtMaNV.getText().trim());
-            s.setTenNV(txtTenNV.getText().trim());
-            s.setNamSinh(namSinhVar.getText().trim());
-            s.setDiaChi(diaChiVar.getText().trim());
-            s.setThanhPho(thanhPhoVar.getSelectedItem().toString().trim());
-            s.setQuan(quanVar.getSelectedItem().toString().trim());
-            s.setPhuong(phuongVar.getSelectedItem().toString().trim());
-            s.setTrangThai(trangThaiVar.getText().trim());
-            s.setNoiDieuTri(noiDieuTriVar.getSelectedItem().toString().trim());
-            s.setLienQuan(lienQuanVar.getText().trim());
-            s.setLichSuCovid(lichSuCovidVar.getText().trim());
-
-            NhanVienDao.update(s);
+            d.setTen(diaDiemVar.getText().trim());
+            d.setSoLuongHienTai(Integer.valueOf(soLuongVar.getText()));
+            d.setSucChua(Integer.valueOf(sucChuaVar.getText()));
+           
+            DiaDiemDieuTriDao.update(d);
 
             getData();
             btnSua.setEnabled(false);
@@ -373,11 +362,10 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
-            NhanVien nv = nvList.get(row);
+            DiaDiem d = ddList.get(row);
             int option = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn xóa không");
             if (option == 0) {
-                TaiKhoanDao.delete(nv.getMaNV());
-                NhanVienDao.delete(nv.getMaNV());
+                DiaDiemDieuTriDao.delete(d.getTen());
             }
             btnSua.setEnabled(false);
             btnXoa.setEnabled(false);
@@ -389,25 +377,15 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
-            NhanVien nv = nvList.get(row);
+            DiaDiem d = ddList.get(row);
             btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
-            txtMaNV.setEnabled(false);
-            noiDieuTriVar.setEnabled(false);
-
-            txtTenNV.setText(nv.getTenNV().trim());
-            txtMaNV.setText(nv.getMaNV().trim());
-            namSinhVar.setText(nv.getNamSinh().trim());
-            diaChiVar.setText(nv.getDiaChi().trim());
-            thanhPhoVar.setSelectedItem(nv.getThanhPho().trim());
-            quanVar.setSelectedItem(nv.getQuan().trim());
-            phuongVar.setSelectedItem(nv.getPhuong().trim());
-            trangThaiVar.setText(nv.getTrangThai().trim());
-            noiDieuTriVar.setSelectedItem(nv.getNoiDieuTri().trim());
-            lienQuanVar.setText(nv.getLienQuan().trim());
-            lichSuCovidVar.setText(nv.getLichSuCovid().trim());
-
-        }
+            diaDiemVar.setEnabled(false);
+            
+            diaDiemVar.setText(d.getTen().trim());
+            soLuongVar.setText(Integer.toString(d.getSoLuongHienTai()));
+            sucChuaVar.setText(Integer.toString(d.getSucChua()));
+       }
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
     /**
@@ -452,6 +430,7 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JTextField diaDiemVar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -460,9 +439,8 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField soLuongVar;
+    private javax.swing.JTextField sucChuaVar;
     private javax.swing.JTable tblDanhSach;
-    private javax.swing.JTextField txtMaNV;
-    private javax.swing.JTextField txtMaNV1;
-    private javax.swing.JTextField txtMaNV2;
     // End of variables declaration//GEN-END:variables
 }

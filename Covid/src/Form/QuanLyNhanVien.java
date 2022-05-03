@@ -5,8 +5,10 @@
  */
 package Form;
 
+import Dao.DiaDiemDieuTriDao;
 import Dao.NhanVienDao;
 import Dao.TaiKhoanDao;
+import Objects.DiaDiem;
 import Objects.NhanVien;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
      */
     List<NhanVien> nvList = new ArrayList<>();
     DefaultTableModel tableModel;
+    ArrayList<String> ddList = new ArrayList<>();
+    
     public QuanLyNhanVien() {
         initComponents();
         setResizable(false);
@@ -39,7 +43,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         getData();
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
-        trangThaiVar.setEnabled(false);
+//        trangThaiVar.setEnabled(false);
         lichSuCovidVar.setText("Có");
         lichSuCovidVar.setEnabled(false);
         checkAddress();
@@ -152,6 +156,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         tblDanhSach = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -212,8 +221,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jLabel10.setText("Trạng thái");
 
         jLabel11.setText("Nơi điều trị");
-
-        noiDieuTriVar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bệnh viện Chợ Rẫy", "Bệnh viện Nhi Đồng", "Bệnh viện Ung Bướu", "Bệnh viện Nhiệt Đới", "Bệnh viện Thống Nhất" }));
 
         jLabel12.setText("Thành Phố");
 
@@ -513,8 +520,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -539,6 +546,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         double countF1 = 0;
         double countF2 = 0;
         double countF3 = 0;
+        double countKB = 0;
         double all = 0;
         
         for (NhanVien nv : nvList) {
@@ -550,20 +558,23 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 countF2++;
             } else if("F3".equals(nv.getTrangThai().trim())){
                 countF3++;
+            } else if("Khỏi bệnh".equals(nv.getTrangThai().trim())){
+                countKB++;
             }
         }
         
-        all = countF0 + countF1 + countF2 + countF3;
+        all = countF0 + countF1 + countF2 + countF3 + countKB;
        
         DefaultPieDataset pieDataset = new DefaultPieDataset ();
         pieDataset.setValue("F0: " + Math.round(countF0/all *100 *100.0)/100.0 + "%", countF0);
         pieDataset.setValue("F1: " + Math.round(countF1/all *100 *100.0)/100.0 + "%", countF1);
         pieDataset.setValue("F2: " + Math.round(countF2/all *100 *100.0)/100.0 + "%", countF2);
         pieDataset.setValue("F3: " + Math.round(countF3/all *100 *100.0)/100.0 + "%", countF3);
+        pieDataset.setValue("Khỏi bệnh: " + Math.round(countKB/all *100 *100.0)/100.0 + "%", countKB);
         
         
         JFreeChart chart = ChartFactory.createPieChart(      
-         "Thống kê người bệnh !!!",   // chart title 
+         "Thống kê bệnh nhân !!!",   // chart title 
          pieDataset,          // data    
          true,             // include legend   
          true, 
@@ -581,16 +592,19 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         String trangThaiTemp = null;
         String nameTemp = null;
-        if (lienQuanVar.getText().isEmpty()){
-            trangThaiTemp = "F0";
-        }
+//        if (lienQuanVar.getText().isEmpty()){
+//            trangThaiTemp = "F0";
+//        }
         for (NhanVien nv : nvList) {
             if (lienQuanVar.getText().equals(nv.getMaNV().trim())){
                 if ("F0".equals(nv.getTrangThai().trim())){
+                    trangThaiVar.setText("F1");
                     trangThaiTemp = "F1";
                 } else if("F1".equals(nv.getTrangThai().trim())){
+                    trangThaiVar.setText("F2");
                     trangThaiTemp = "F2";
                 } else{
+                    trangThaiVar.setText("F3");
                     trangThaiTemp = "F3";
                 }
             }
@@ -609,8 +623,16 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         
         try{
             if(checkMaNV(txtMaNV.getText())){
-                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiTemp, noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), "Có");
+                NhanVien nv = new NhanVien(maNV, tenNV, namSinhVar.getText(), diaChiVar.getText(), thanhPhoVar.getSelectedItem().toString(), quanVar.getSelectedItem().toString(), phuongVar.getSelectedItem().toString(), trangThaiVar.getText(), noiDieuTriVar.getSelectedItem().toString(), lienQuanVar.getText(), "Có");
                 NhanVienDao.insert(nv);
+                ddList = DiaDiemDieuTriDao.getAllTen();
+                
+                for(String dd : ddList){
+                    if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
+                        
+                        DiaDiemDieuTriDao.updatePlus(dd);
+                    }
+                }
                 
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Mã CCCD không được trùng");
@@ -797,6 +819,50 @@ DefaultComboBoxModel model;
 
     private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
         // TODO add your handling code here:
+        txtMaNV.setEnabled(true);
+        noiDieuTriVar.setEnabled(true);
+        namSinhVar.setText("");
+        trangThaiVar.setText("");
+        txtTenNV.setText("");
+        noiDieuTriVar.setSelectedItem("Bệnh viện Chợ Rẫy");
+        diaChiVar.setText("");
+        thanhPhoVar.setSelectedItem("Hồ Chí Minh");
+        quanVar.setSelectedItem("");
+        phuongVar.setSelectedItem("");
+        lienQuanVar.setText("");
+        lichSuCovidVar.setText("");
+        txtMaNV.setText("");
+        
+        nvList = NhanVienDao.getAll();
+        tableModel.setRowCount(0);
+        for(int i = 0; i < 10; i++){
+            for (NhanVien nv : nvList) {
+                if (nv.getLienQuan().trim().equals("") && !nv.getTrangThai().trim().equals("Khỏi bệnh")){
+                    NhanVienDao.updateF("F0", nv.getMaNV());
+                } else{
+                    System.out.println("A");
+                    for (NhanVien nv2 : nvList){
+                        if (nv.getLienQuan().trim().equals(nv2.getMaNV().trim())){
+                            System.out.println(nv2.getMaNV().trim());
+                            if(nv2.getTrangThai().trim().equals("F0")){
+                                NhanVienDao.updateF("F1", nv.getMaNV());
+                                nv.setTrangThai("F1");
+                            } else if(nv2.getTrangThai().trim().equals("F1")){
+                                NhanVienDao.updateF("F2", nv.getMaNV());
+                                nv.setTrangThai("F2");
+                            } else if(nv2.getTrangThai().trim().equals("F2")){
+                                NhanVienDao.updateF("F3", nv.getMaNV());
+                                nv.setTrangThai("F3");
+                            }
+                        }
+                    }
+                }
+            }
+            getData();
+        }
+        
+        
+        
     }//GEN-LAST:event_btnReset1ActionPerformed
 
     private void sapXepVarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sapXepVarMouseClicked
@@ -826,6 +892,13 @@ DefaultComboBoxModel model;
         }
         
     }//GEN-LAST:event_sapXepVarItemStateChanged
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        ddList = DiaDiemDieuTriDao.getAllTen();
+        model = new DefaultComboBoxModel(ddList.toArray());
+        noiDieuTriVar.setModel(model);
+    }//GEN-LAST:event_formWindowOpened
     private boolean checkMaNV(String maNV){
         for(NhanVien nv : nvList){
             if(nv.getMaNV().trim().equalsIgnoreCase(maNV.trim())){

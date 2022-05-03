@@ -64,7 +64,13 @@ create table ThongKe(
 create table LichSuDangNhap(
 	maNV nvarchar(20) primary key not null,
 	thoiGian nvarchar(30),
-	role nvarchar(10)
+	quyenTruycap nvarchar(10)
+)
+Drop table DiaDiemDieuTri
+create table DiaDiemDieuTri(
+	ten nvarchar(50) primary key not null,
+	soLuongHienTai int,
+	sucChua int
 )
 
 

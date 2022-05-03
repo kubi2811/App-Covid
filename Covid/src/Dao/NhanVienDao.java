@@ -282,5 +282,39 @@ public class NhanVienDao {
         }
         return nvList;
     }
+    
+    public static void updateF(String trangThai, String maNV) {
+        Connection conn = null;
+        PreparedStatement pre = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "update NhanVien set trangThai = ? where maNV = ?";
+            pre = conn.prepareStatement(sql);
+            
+            pre.setString(1, trangThai);
+            
+            pre.setString(2, maNV);
+
+            pre.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("Lỗi: " + ex);
+        } finally {
+            if (pre != null) {
+                try {
+                    pre.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+        }
+    }
 
 }

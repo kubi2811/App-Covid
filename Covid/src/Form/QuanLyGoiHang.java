@@ -54,7 +54,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         txtMaSP.setEnabled(false);
         txtTongTien.setEditable(false);
         btnXoa.setEnabled(false);
-        txtMaNV.setEnabled(false);
+//        txtMaNV.setEnabled(false);
         LoadTenSP();
     }
 
