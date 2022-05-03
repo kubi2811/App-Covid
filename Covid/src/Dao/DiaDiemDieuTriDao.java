@@ -152,6 +152,39 @@ public class DiaDiemDieuTriDao {
         }
     }
     
+    public static void updateMinus(String ten) {
+        Connection conn = null;
+        PreparedStatement pre = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "update DiaDiemDieuTri set soLuongHienTai = soLuongHienTai - 1 where ten = ?";
+            pre = conn.prepareStatement(sql);
+            pre.setNString(1, ten);
+//            pre.setInt(1, dd.getSoLuongHienTai());
+//            pre.setInt(2, dd.getSucChua());
+
+            pre.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("Lỗi: " + ex);
+        } finally {
+            if (pre != null) {
+                try {
+                    pre.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+        }
+    }
+    
     public static void delete(String ten) {
         Connection conn = null;
         PreparedStatement pre = null;
