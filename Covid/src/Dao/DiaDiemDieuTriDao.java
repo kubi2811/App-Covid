@@ -185,6 +185,39 @@ public class DiaDiemDieuTriDao {
         }
     }
     
+    public static void update2Places(String ten1, String ten2) {
+        Connection conn = null;
+        PreparedStatement pre = null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "update DiaDiemDieuTri set soLuongHienTai = soLuongHienTai + 1 where ten = ?; update DiaDiemDieuTri set soLuongHienTai = soLuongHienTai - 1 where ten = ?; ";
+            pre = conn.prepareStatement(sql);
+            pre.setNString(1, ten1);
+            pre.setNString(2, ten2);
+//            pre.setInt(1, dd.getSoLuongHienTai());
+//            pre.setInt(2, dd.getSucChua());
+
+            pre.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("Lỗi: " + ex);
+        } finally {
+            if (pre != null) {
+                try {
+                    pre.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
+        }
+    }
     public static void delete(String ten) {
         Connection conn = null;
         PreparedStatement pre = null;

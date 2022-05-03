@@ -655,7 +655,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
             txtMaNV.setEnabled(false);
-            noiDieuTriVar.setEnabled(false);
+//            noiDieuTriVar.setEnabled(false);
             
             txtTenNV.setText(nv.getTenNV().trim());
             txtMaNV.setText(nv.getMaNV().trim());
@@ -718,6 +718,32 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             s.setLienQuan(lienQuanVar.getText().trim());
             s.setLichSuCovid(lichSuCovidVar.getText().trim());
             
+            nvList = NhanVienDao.getAll();
+            tableModel.setRowCount(0);
+            for (NhanVien nv : nvList) {
+                if (nv.getMaNV().trim().equals(txtMaNV.getText())){
+                    if (!noiDieuTriVar.getSelectedItem().toString().equals(nv.getNoiDieuTri())){
+                    System.out.println("innn");
+                    ddList = DiaDiemDieuTriDao.getAllTen();
+                    for(String dd : ddList){
+                        if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
+                            DiaDiemDieuTriDao.update2Places(dd,nv.getNoiDieuTri());
+                        }
+                    }
+                    }
+                }
+            }
+//            System.out.println(noiDieuTriVar.getSelectedItem().toString());
+//            System.out.println(s.getNoiDieuTri());
+//            if (!noiDieuTriVar.getSelectedItem().toString().equals(s.getNoiDieuTri())){
+//                System.out.println("innn");
+//                ddList = DiaDiemDieuTriDao.getAllTen();
+//                for(String dd : ddList){
+//                    if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
+//                        DiaDiemDieuTriDao.update2Places(dd,s.getNoiDieuTri());
+//                    }
+//                }
+//            }
             NhanVienDao.update(s);
             
             
@@ -915,6 +941,35 @@ DefaultComboBoxModel model;
      */
     public static void main(String args[]) {
         /* Create and display the form */
+                /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QuanLyNhanVien().setVisible(true);
