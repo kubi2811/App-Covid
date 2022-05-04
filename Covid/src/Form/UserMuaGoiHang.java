@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -370,9 +372,25 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Không được vượt quá giới hạn mua");
             return;
         }
+        
+        if (checkGioiHanNo() == false){
+            JOptionPane.showMessageDialog(rootPane, "Hãy thanh toán nợ trước khi mua thêm");
+            return;
+        }
+        
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into MuaGoiHang values(?,?,?,?,?)";
+            String sql;
+            int flag;
+//            boolean i = checkDuNo();
+            if(checkDuNo() == false){
+                sql = "insert into MuaGoiHang values(?,?,?,?,?); insert into DuNo values(?,?);";
+                flag = 0;
+            } else {
+                sql = "insert into MuaGoiHang values(?,?,?,?,?); update DuNo set soNo = soNo + ? where maNV = ?;";
+                flag = 1;
+            }
+//            sql = "insert into MuaGoiHang values(?,?,?,?,?);";
             pre = conn.prepareStatement(sql);
             pre.setString(1, getMaNV().trim());
             pre.setString(2, goiHangVar.getSelectedItem().toString());
@@ -380,13 +398,24 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 //            String ngayHetHan = dateFormat.format(ngayHetHanVar.getDate());
-            String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-
-            pre.setInt(4, Integer.valueOf(donGiaVar.getText()));
-            pre.setString(5, timeStamp);
-
-            pre.executeUpdate();
+            LocalDateTime timeStamp = LocalDateTime.now();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            Date date = new Date();  
             
+            pre.setInt(4, Integer.valueOf(donGiaVar.getText()));
+            pre.setString(5, formatter.format(date));
+            
+            if(flag == 0){
+                pre.setInt(7, Integer.valueOf(soLuongVar.getText()) * Integer.valueOf(donGiaVar.getText()));
+                pre.setString(6, getMaNV().trim());
+            } else{
+                pre.setInt(6, Integer.valueOf(soLuongVar.getText()) * Integer.valueOf(donGiaVar.getText()));
+                pre.setString(7, getMaNV().trim());
+            }
+            
+            
+            pre.executeUpdate();
+            JOptionPane.showMessageDialog(rootPane, "Bạn đã mua hàng thành công");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Yêu cầu nhập số và không để trống");
         } catch (Exception ex) {
@@ -472,6 +501,52 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
+    }
+    private boolean checkDuNo(){
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+//        goiHangVar.removeAllItems();
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from DuNo";
+            pre = conn.prepareStatement(sql);
+//            pre.setString(1, maGHVar.getText().trim());
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                if(rs.getString("maNV").trim().equals(getMaNV())){
+                    return true;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        return false;
+    }
+    
+    private boolean checkGioiHanNo(){
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+//        goiHangVar.removeAllItems();
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select soNo from DuNo where maNV = ?";
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, getMaNV().trim());
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                int check = Integer.valueOf(rs.getString("soNo").trim());
+                if(check + (Integer.valueOf(soLuongVar.getText()) * Integer.valueOf(donGiaVar.getText())) > 1000000){
+                    return false;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        return true;
     }
     /**
      * @param args the command line arguments

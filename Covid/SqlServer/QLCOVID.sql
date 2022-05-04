@@ -84,6 +84,9 @@ create table LichSuDangNhap(
 	quyenTruycap nvarchar(10)
 )
 
+drop table LichSuDuocQuanLy
+drop table LichSuTieuThu
+drop table LichSuThanhToan
 create table LichSuDuocQuanLy(
 	maNV nvarchar(20) primary key not null,
 	thoiGian nvarchar(30),
@@ -110,12 +113,17 @@ create table DiaDiemDieuTri(
 	sucChua int
 )
 
+drop table MuaGoiHang
 create table MuaGoiHang(
 	maNV nchar(20),
 	tenGH nvarchar(20),
 	soLuong int,
 	giaGH int,
-	thoiGian date
+	thoiGian nvarchar(30)
 )
 
+create table DuNo(
+	maNV nchar(20) primary key not null,
+	soNo int
+)
 

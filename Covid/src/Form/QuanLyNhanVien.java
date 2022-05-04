@@ -596,9 +596,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         String trangThaiTemp = null;
         String nameTemp = null;
-//        if (lienQuanVar.getText().isEmpty()){
-//            trangThaiTemp = "F0";
-//        }
+        if (lienQuanVar.getText().isEmpty()){
+            trangThaiVar.setText("F0");
+            trangThaiTemp = "F0";
+        }
         for (NhanVien nv : nvList) {
             if (lienQuanVar.getText().equals(nv.getMaNV().trim())){
                 if ("F0".equals(nv.getTrangThai().trim())){

@@ -291,8 +291,11 @@ public class QuanLyDiaDiem extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new StaffForm().setVisible(true);
-        this.dispose();
+//        new StaffForm().setVisible(true);
+//        this.dispose();
+        AdminForm ad = new AdminForm();
+        ad.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed

@@ -224,6 +224,9 @@ public class AdminForm extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        new QuanLyNhanVien().setVisible(true);
 //        this.dispose();
+    QuanLyDiaDiem dd = new QuanLyDiaDiem();
+    dd.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnQLTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTaiKhoanActionPerformed

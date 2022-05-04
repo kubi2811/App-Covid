@@ -8,8 +8,12 @@ package Form;
  *
  * @author ranco
  */
-public class UserForm extends javax.swing.JFrame {
+public class UserForm2 extends javax.swing.JFrame {
 
+    /**
+     * Creates new form UserForm2
+     */
+    
     String maNV;
     public String getMaNV() {
         return maNV;
@@ -25,10 +29,7 @@ public class UserForm extends javax.swing.JFrame {
     public void setTenNV(String tenNV) {
         this.tenNV = tenNV;
     }
-    /**
-     * Creates new form UserForm
-     */
-    public UserForm() {
+    public UserForm2() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
@@ -48,22 +49,18 @@ public class UserForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnBanHang = new javax.swing.JButton();
         btnQLSanPham = new javax.swing.JButton();
-        btnQLHoaDon = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnThoat = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         lblTenNV = new java.awt.Label();
+        btnQLSanPham1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        btnQLSanPham2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnDangXuat1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -107,17 +104,6 @@ public class UserForm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 255, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chức năng nghiệp vụ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        btnBanHang.setBackground(new java.awt.Color(153, 255, 153));
-        btnBanHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnBanHang.setForeground(new java.awt.Color(0, 153, 255));
-        btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/banHang.png"))); // NOI18N
-        btnBanHang.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 118, 108)));
-        btnBanHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBanHangActionPerformed(evt);
-            }
-        });
-
         btnQLSanPham.setBackground(new java.awt.Color(204, 204, 204));
         btnQLSanPham.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnQLSanPham.setForeground(new java.awt.Color(0, 153, 255));
@@ -129,28 +115,9 @@ public class UserForm extends javax.swing.JFrame {
             }
         });
 
-        btnQLHoaDon.setBackground(new java.awt.Color(204, 204, 204));
-        btnQLHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnQLHoaDon.setForeground(new java.awt.Color(0, 153, 255));
-        btnQLHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/HoaDon.png"))); // NOI18N
-        btnQLHoaDon.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 118, 108)));
-        btnQLHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLHoaDonActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel4.setText("Lịch sử");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel5.setText("Mua gói nhu yếu phẩm");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel6.setText("Thông tin cá nhân");
+        jLabel4.setText("Lịch sử thanh toán");
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnThoat.setText("Thoát");
@@ -173,41 +140,79 @@ public class UserForm extends javax.swing.JFrame {
         lblTenNV.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblTenNV.setText("Tên bệnh nhân:");
 
+        btnQLSanPham1.setBackground(new java.awt.Color(204, 204, 204));
+        btnQLSanPham1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnQLSanPham1.setForeground(new java.awt.Color(0, 153, 255));
+        btnQLSanPham1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/qlHang.png"))); // NOI18N
+        btnQLSanPham1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 118, 108)));
+        btnQLSanPham1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSanPham1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel5.setText("Lịch sử mua hàng");
+
+        btnQLSanPham2.setBackground(new java.awt.Color(204, 204, 204));
+        btnQLSanPham2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnQLSanPham2.setForeground(new java.awt.Color(0, 153, 255));
+        btnQLSanPham2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/qlHang.png"))); // NOI18N
+        btnQLSanPham2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(10, 118, 108)));
+        btnQLSanPham2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSanPham2ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel6.setText("Lịch sử được quản lý");
+
+        btnDangXuat1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDangXuat1.setText("Quay lại");
+        btnDangXuat1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 102)));
+        btnDangXuat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuat1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(btnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel5)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(btnQLSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(115, 115, 115)
-                                .addComponent(btnQLHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel6))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
-                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGap(226, 226, 226)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnDangXuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(280, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(251, 251, 251))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnQLSanPham1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(btnQLSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQLSanPham2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,19 +220,27 @@ public class UserForm extends javax.swing.JFrame {
                 .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQLSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQLHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnQLSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnQLSanPham2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDangXuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnQLSanPham1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,7 +252,7 @@ public class UserForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,8 +265,17 @@ public class UserForm extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPhamActionPerformed
+        // TODO add your handling code here:
+        new QuanLySanPham().setVisible(true);
+    }//GEN-LAST:event_btnQLSanPhamActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        System.exit(1);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
@@ -261,45 +283,25 @@ public class UserForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
-    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+    private void btnQLSanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPham1ActionPerformed
         // TODO add your handling code here:
-        System.exit(1);
-    }//GEN-LAST:event_btnThoatActionPerformed
-
-    private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
-        // TODO add your handling code here:
-        new QuanLyNhanVien().setVisible(true);
-        this.dispose();
-        //        QuanLyHoaDon hd = new QuanLyHoaDon();
-        //        hd.setVisible(true);
-        //        hd.setMaNV(this.getMaNV());
-    }//GEN-LAST:event_btnQLHoaDonActionPerformed
-
-    private void btnQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPhamActionPerformed
-        // TODO add your handling code here:
-//        new QuanLySanPham().setVisible(true);
-        UserForm2 uf = new UserForm2();
+        LichSuMuaHang uf = new LichSuMuaHang();
         uf.setVisible(true);
         uf.setMaNV(this.getMaNV().trim());
         uf.setTenNV(this.getTenNV().trim());
-    }//GEN-LAST:event_btnQLSanPhamActionPerformed
+    }//GEN-LAST:event_btnQLSanPham1ActionPerformed
 
-    private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
+    private void btnQLSanPham2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPham2ActionPerformed
         // TODO add your handling code here:
-//        BanHang bh = new BanHang();
-//        bh.setVisible(true);
-//        bh.setMaNV(this.getMaNV());
-        
-        UserMuaGoiHang bh = new UserMuaGoiHang();
-        bh.setVisible(true);
-        bh.setMaNV(this.getMaNV().trim());
-        bh.setTenNV(this.getTenNV().trim());
-    }//GEN-LAST:event_btnBanHangActionPerformed
+    }//GEN-LAST:event_btnQLSanPham2ActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void btnDangXuat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuat1ActionPerformed
         // TODO add your handling code here:
-        lblTenNV.setText("Tên bệnh nhân: " + getTenNV());
-    }//GEN-LAST:event_formWindowOpened
+        UserForm uf = new UserForm();
+        uf.setVisible(true);
+        uf.setMaNV(this.getMaNV().trim());
+        uf.setTenNV(this.getTenNV().trim());
+    }//GEN-LAST:event_btnDangXuat1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,29 +320,30 @@ public class UserForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserForm().setVisible(true);
+                new UserForm2().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBanHang;
     private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnQLHoaDon;
+    private javax.swing.JButton btnDangXuat1;
     private javax.swing.JButton btnQLSanPham;
+    private javax.swing.JButton btnQLSanPham1;
+    private javax.swing.JButton btnQLSanPham2;
     private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
