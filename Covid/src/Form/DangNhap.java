@@ -222,7 +222,7 @@ public class DangNhap extends javax.swing.JFrame {
                    } else {
                         UserForm us = new UserForm();
                         us.setVisible(true);
-                        us.setTenNV(rs.getString(username));
+                        us.setTenNV(rs.getString("tenNV"));
                         us.setMaNV(rs.getString("maNV"));
                         System.out.print(rs.getString("pass"));
                         this.dispose();
