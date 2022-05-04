@@ -35,6 +35,22 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     /**
      * Creates new form SellForm
      */
+    
+    String maNV;
+    public String getMaNV() {
+        return maNV;
+    }
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+    String tenNV;
+    public String getTenNV() {
+        return tenNV;
+    }
+    public void setTenNV(String tenNV) {
+        this.tenNV = tenNV;
+    }
+    
     List<NhanVien> nvList = new ArrayList<>();
     DefaultTableModel tableModel;
     ArrayList<String> ddList = new ArrayList<>();
@@ -534,7 +550,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new StaffForm().setVisible(true);
+        StaffForm bh = new StaffForm();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -738,21 +757,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     }
                 }
             }
-//            System.out.println(noiDieuTriVar.getSelectedItem().toString());
-//            System.out.println(s.getNoiDieuTri());
-//            if (!noiDieuTriVar.getSelectedItem().toString().equals(s.getNoiDieuTri())){
-//                System.out.println("innn");
-//                ddList = DiaDiemDieuTriDao.getAllTen();
-//                for(String dd : ddList){
-//                    if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
-//                        DiaDiemDieuTriDao.update2Places(dd,s.getNoiDieuTri());
-//                    }
-//                }
-//            }
             NhanVienDao.update(s);
-            
-            
-            
+
             getData();
             btnSua.setEnabled(false);
             btnXoa.setEnabled(false);

@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ranco
  */
-public class LichSuMuaHang extends javax.swing.JFrame {
+public class ThanhToanNo extends javax.swing.JFrame {
 
     String maNV;
     public String getMaNV() {
@@ -34,22 +36,19 @@ public class LichSuMuaHang extends javax.swing.JFrame {
     public void setTenNV(String tenNV) {
         this.tenNV = tenNV;
     }
-    
     /**
-     * Creates new form LichSuMuaHang
+     * Creates new form ThanhToanNo
      */
+    
     DefaultTableModel tableModel;
     Connection conn = null;
     PreparedStatement pre = null;
     ResultSet rs = null;
     
-    
-    public LichSuMuaHang() {
+    public ThanhToanNo() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        tableModel = (DefaultTableModel) tblDanhSach.getModel();
-//        getData();
     }
 
     /**
@@ -65,8 +64,12 @@ public class LichSuMuaHang extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDanhSach = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        tenVar = new javax.swing.JTextField();
+        noVar = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnThem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,7 +81,7 @@ public class LichSuMuaHang extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Lịch sử mua hàng");
+        jLabel1.setText("Thanh toán nợ");
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/backsmall.png"))); // NOI18N
@@ -106,7 +109,7 @@ public class LichSuMuaHang extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addGap(182, 182, 182)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -121,30 +124,37 @@ public class LichSuMuaHang extends javax.swing.JFrame {
                 .addGap(0, 17, Short.MAX_VALUE))
         );
 
-        tblDanhSach.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel8.setText("Tên bệnh nhân");
 
-            },
-            new String [] {
-                "Mã bệnh nhân", "Tên gói hàng", "Số lượng", "Thời gian"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
+        jLabel9.setText("Số nợ của bạn là");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/them.png"))); // NOI18N
+        btnThem.setText("Thanh toán");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
             }
         });
-        tblDanhSach.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblDanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDanhSachMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblDanhSach);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,30 +162,44 @@ public class LichSuMuaHang extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(jLabel8)
+                .addGap(30, 30, 30)
+                .addComponent(tenVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120)
+                .addComponent(jLabel9)
+                .addGap(30, 30, 30)
+                .addComponent(noVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tenVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(noVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        UserForm2 uf = new UserForm2();
+        UserForm uf = new UserForm();
         uf.setVisible(true);
         uf.setMaNV(this.getMaNV().trim());
         uf.setTenNV(this.getTenNV().trim());
@@ -187,36 +211,68 @@ public class LichSuMuaHang extends javax.swing.JFrame {
         System.exit(1);
     }//GEN-LAST:event_btnThoatActionPerformed
 
-    private void tblDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachMouseClicked
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-  
-    }//GEN-LAST:event_tblDanhSachMouseClicked
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+       
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select maNV, tenGH, soLuong, thoiGian from MuaGoiHang where maNV = ?";
+            String sql = "update DuNo set soNo = 0 where maNV = ?; insert into LichSuThanhToan values (?, ?, ?)";
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, getMaNV().trim());
+//            rs = pre.executeQuery();
+//            tableModel.setRowCount(0);
+            pre.setString(2, getMaNV().trim());
+            pre.setInt(3, Integer.valueOf(noVar.getText()));
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            Date date = new Date();
+            pre.setString(4, formatter.format(date));
+            
+            pre.executeUpdate();
+            JOptionPane.showMessageDialog(rootPane, "Bạn đã thanh toán nợ thành công");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        } 
+        
+        tenVar.setText(getTenNV());
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select soNo from DuNo where maNV = ?";
             pre = conn.prepareStatement(sql);
             pre.setString(1, getMaNV().trim());
             rs = pre.executeQuery();
-            tableModel.setRowCount(0);
+//            tableModel.setRowCount(0);
             while (rs.next()) {
-                Vector arr = new Vector();
-                arr.add(rs.getString("maNV"));
-                arr.add(rs.getString("tenGH"));
-                arr.add(rs.getInt("soLuong"));
-                arr.add(rs.getString("thoiGian"));
-                tableModel.addRow(arr);
+                noVar.setText(rs.getString("soNo"));
+
             }
-//            loadDataTable();
-//            tongThanhTien();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        } 
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        tenVar.setText(getTenNV());
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select soNo from DuNo where maNV = ?";
+            pre = conn.prepareStatement(sql);
+            pre.setString(1, getMaNV().trim());
+            rs = pre.executeQuery();
+//            tableModel.setRowCount(0);
+            while (rs.next()) {
+                noVar.setText(rs.getString("soNo"));
+
+            }
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         } 
     }//GEN-LAST:event_formWindowOpened
 
-  
     /**
      * @param args the command line arguments
      */
@@ -234,30 +290,34 @@ public class LichSuMuaHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LichSuMuaHang().setVisible(true);
+                new ThanhToanNo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblDanhSach;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField noVar;
+    private javax.swing.JTextField tenVar;
     // End of variables declaration//GEN-END:variables
 }

@@ -61,6 +61,13 @@ public class UserForm2 extends javax.swing.JFrame {
         btnDangXuat1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -268,8 +275,11 @@ public class UserForm2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPhamActionPerformed
-        // TODO add your handling code here:
-        new QuanLySanPham().setVisible(true);
+        LichSuThanhToan uf = new LichSuThanhToan();
+        uf.setVisible(true);
+        uf.setMaNV(this.getMaNV().trim());
+        uf.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnQLSanPhamActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
@@ -289,10 +299,16 @@ public class UserForm2 extends javax.swing.JFrame {
         uf.setVisible(true);
         uf.setMaNV(this.getMaNV().trim());
         uf.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnQLSanPham1ActionPerformed
 
     private void btnQLSanPham2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPham2ActionPerformed
         // TODO add your handling code here:
+        LichSuDuocQuanLy uf = new LichSuDuocQuanLy();
+        uf.setVisible(true);
+        uf.setMaNV(this.getMaNV().trim());
+        uf.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnQLSanPham2ActionPerformed
 
     private void btnDangXuat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuat1ActionPerformed
@@ -301,7 +317,13 @@ public class UserForm2 extends javax.swing.JFrame {
         uf.setVisible(true);
         uf.setMaNV(this.getMaNV().trim());
         uf.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnDangXuat1ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        lblTenNV.setText("Tên bệnh nhân: " + getTenNV());
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

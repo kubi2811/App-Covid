@@ -261,20 +261,29 @@ public class StaffForm extends javax.swing.JFrame {
 //        bh.setVisible(true);
 //        bh.setMaNV(this.getMaNV());
         
-        QuanLyGoiHang bhh = new QuanLyGoiHang();
-        bhh.setVisible(true);
-        bhh.setMaNV(this.getMaNV());
+        QuanLyGoiHang bh = new QuanLyGoiHang();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
+        this.dispose();
         
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnQLSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSanPhamActionPerformed
         // TODO add your handling code here:
-        new QuanLySanPham().setVisible(true);
+        QuanLySanPham bh = new QuanLySanPham();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnQLSanPhamActionPerformed
 
     private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
         // TODO add your handling code here:
-        new QuanLyNhanVien().setVisible(true);
+        QuanLyNhanVien bh = new QuanLyNhanVien();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
 //        QuanLyHoaDon hd = new QuanLyHoaDon();
 //        hd.setVisible(true);

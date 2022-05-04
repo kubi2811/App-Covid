@@ -6,7 +6,6 @@ package Dao;
 
 import Connect.JDBCConnection;
 import Objects.GoiHang;
-import Objects.HoaDon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

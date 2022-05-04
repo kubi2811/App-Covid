@@ -6,9 +6,7 @@
 package Form;
 
 import Connect.JDBCConnection;
-import Dao.HoaDonDao;
-import Objects.ChiTietHoaDon;
-import Objects.HoaDon;
+
 import Objects.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,9 +39,9 @@ public class BanHang extends javax.swing.JFrame {
     public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
-    List<HoaDon> hdList = new ArrayList<>();
-    List<TaiKhoan> tkList = new ArrayList<>();
-    List<ChiTietHoaDon> cthdList = new ArrayList<>();
+//    List<HoaDon> hdList = new ArrayList<>();
+//    List<TaiKhoan> tkList = new ArrayList<>();
+//    List<ChiTietHoaDon> cthdList = new ArrayList<>();
     DefaultTableModel tableModel;
     Connection conn = null;
     PreparedStatement pre = null;
@@ -583,28 +581,28 @@ public class BanHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Địa chỉ không được trống");
             return;
         }
-        try {
-            String maHD = txtMaHoaDon.getText().trim();
-            String maNV = txtMaNV.getText().trim();
-            String soDT = txtSoDT.getText().trim();
-            String tenKH = txtTenKhachHang.getText().trim();
-            String diaChi = txtDiaChi.getText().trim();
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-            String ngayLap = dateFormat.format(dateNgayLap.getDate());
-
-            if (checkMaHD()) {
-                HoaDon themHD = new HoaDon(maHD, maNV, ngayLap, soDT, tenKH, diaChi);
-                HoaDonDao.insertHD(themHD);
-                JOptionPane.showMessageDialog(rootPane, "Thêm hóa đơn thành công");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Mã hoá đơn không được trùng");
-                return;
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        }
-        loadMaHD();
+//        try {
+//            String maHD = txtMaHoaDon.getText().trim();
+//            String maNV = txtMaNV.getText().trim();
+//            String soDT = txtSoDT.getText().trim();
+//            String tenKH = txtTenKhachHang.getText().trim();
+//            String diaChi = txtDiaChi.getText().trim();
+//
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//            String ngayLap = dateFormat.format(dateNgayLap.getDate());
+//
+//            if (checkMaHD()) {
+//                HoaDon themHD = new HoaDon(maHD, maNV, ngayLap, soDT, tenKH, diaChi);
+//                HoaDonDao.insertHD(themHD);
+//                JOptionPane.showMessageDialog(rootPane, "Thêm hóa đơn thành công");
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Mã hoá đơn không được trùng");
+//                return;
+//            }
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(rootPane, ex);
+//        }
+//        loadMaHD();
 
     }//GEN-LAST:event_btnThemHoaDonActionPerformed
 
@@ -712,49 +710,49 @@ public class BanHang extends javax.swing.JFrame {
             return;
         }
 
-        try {
-            String maHD = cbMaHD.getSelectedItem().toString().trim();
-            String maSP = txtMaSP.getText().trim();
-            int soLuongBan = Integer.parseInt(txtSoLuongBan.getText().trim());
-            ChiTietHoaDon cthd = new ChiTietHoaDon(maHD, maSP, soLuongBan);
-            conn = JDBCConnection.getConnection();
-            String sql1 = "insert into ChiTietHoaDon values(?,?,?)";
-            pre = conn.prepareStatement(sql1);
-            pre.setString(1, cthd.getMaHD());
-            pre.setString(2, cthd.getMaSP());
-            pre.setInt(3, cthd.getSoLuongBan());
-            int n =  pre.executeUpdate();
-            
-            if(n > 0){
-                String sql2 = "update SanPham set soLuong = soLuong - ? from SanPham inner join ChiTietHoaDon on ChiTietHoaDon.maSP= SanPham.maSP where ChiTietHoaDon.maSP = ? and ChiTietHoaDon.maHD= ?";
-                pre = conn.prepareStatement(sql2);
-                pre.setInt(1, cthd.getSoLuongBan());
-                pre.setString(2, cthd.getMaSP());
-                pre.setString(3, cthd.getMaHD());
-                pre.executeUpdate();
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Trùng đơn hàng");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Số lượng bán phải là số và không trống!");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Khoá chính");
-        } finally {
-            if (pre != null) {
-                try {
-                    pre.close();
-                } catch (SQLException ex) {
-                    System.out.println("Lỗi: " + ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    System.out.println("Lỗi: " + ex);
-                }
-            }
-        }
+//        try {
+//            String maHD = cbMaHD.getSelectedItem().toString().trim();
+//            String maSP = txtMaSP.getText().trim();
+//            int soLuongBan = Integer.parseInt(txtSoLuongBan.getText().trim());
+////            ChiTietHoaDon cthd = new ChiTietHoaDon(maHD, maSP, soLuongBan);
+//            conn = JDBCConnection.getConnection();
+//            String sql1 = "insert into ChiTietHoaDon values(?,?,?)";
+//            pre = conn.prepareStatement(sql1);
+//            pre.setString(1, cthd.getMaHD());
+//            pre.setString(2, cthd.getMaSP());
+//            pre.setInt(3, cthd.getSoLuongBan());
+//            int n =  pre.executeUpdate();
+//            
+//            if(n > 0){
+//                String sql2 = "update SanPham set soLuong = soLuong - ? from SanPham inner join ChiTietHoaDon on ChiTietHoaDon.maSP= SanPham.maSP where ChiTietHoaDon.maSP = ? and ChiTietHoaDon.maHD= ?";
+//                pre = conn.prepareStatement(sql2);
+//                pre.setInt(1, cthd.getSoLuongBan());
+//                pre.setString(2, cthd.getMaSP());
+//                pre.setString(3, cthd.getMaHD());
+//                pre.executeUpdate();
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(rootPane, "Trùng đơn hàng");
+//        } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(rootPane, "Số lượng bán phải là số và không trống!");
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(rootPane, "Khoá chính");
+//        } finally {
+//            if (pre != null) {
+//                try {
+//                    pre.close();
+//                } catch (SQLException ex) {
+//                    System.out.println("Lỗi: " + ex);
+//                }
+//            }
+//            if (conn != null) {
+//                try {
+//                    conn.close();
+//                } catch (SQLException ex) {
+//                    System.out.println("Lỗi: " + ex);
+//                }
+//            }
+//        }
 
         btnXoa.setEnabled(false);
         loadDataTable();

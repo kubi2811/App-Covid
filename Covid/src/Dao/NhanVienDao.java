@@ -11,7 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -179,7 +181,7 @@ public class NhanVienDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update NhanVien set tenNV = ?, namSinh = ?, diaChi = ?, thanhPho = ?, quan = ?, phuong = ?, trangThai = ?, noiDieuTri = ?, lienQuan = ?, lichSuCovid = ? where maNV = ?";
+            String sql = "update NhanVien set tenNV = ?, namSinh = ?, diaChi = ?, thanhPho = ?, quan = ?, phuong = ?, trangThai = ?, noiDieuTri = ?, lienQuan = ?, lichSuCovid = ? where maNV = ?; insert into LichSuDuocQuanLy values (?, ?, ?)";
             pre = conn.prepareStatement(sql);
             pre.setString(1, nv.getTenNV());
             pre.setString(2, nv.getNamSinh());
@@ -193,6 +195,13 @@ public class NhanVienDao {
             pre.setString(10, nv.getLichSuCovid());
             
             pre.setString(11, nv.getMaNV());
+            
+            pre.setString(12, nv.getMaNV());
+            pre.setString(13, "Thông tin bệnh nhân đã được cập nhật");
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            Date date = new Date();
+            pre.setString(14, formatter.format(date));
 
             pre.executeUpdate();
 

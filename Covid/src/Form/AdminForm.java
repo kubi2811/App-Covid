@@ -121,7 +121,7 @@ public class AdminForm extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel6.setText("Thống kê doanh số");
+        jLabel6.setText("Lịch sử đăng nhập");
 
         btnThoat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnThoat.setText("Thoát");
@@ -224,20 +224,28 @@ public class AdminForm extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        new QuanLyNhanVien().setVisible(true);
 //        this.dispose();
-    QuanLyDiaDiem dd = new QuanLyDiaDiem();
-    dd.setVisible(true);
-    this.setVisible(false);
+    QuanLyDiaDiem bh = new QuanLyDiaDiem();
+        bh.setVisible(true);
+//        bh.setMaNV(this.getMaNV().trim());
+//        bh.setTenNV(this.getTenNV().trim());
+        this.dispose();
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnQLTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTaiKhoanActionPerformed
         // TODO add your handling code here:
-        new QuanLyTaiKhoan().setVisible(true);
+        QuanLyTaiKhoan bh = new QuanLyTaiKhoan();
+        bh.setVisible(true);
+//        bh.setMaNV(this.getMaNV().trim());
+//        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
     }//GEN-LAST:event_btnQLTaiKhoanActionPerformed
 
     private void btnThongKeDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeDSActionPerformed
         // TODO add your handling code here:
-        new ThongKeDoanhSo().setVisible(true);
+        LichSuDangNhap bh = new LichSuDangNhap();
+        bh.setVisible(true);
+//        bh.setMaNV(this.getMaNV().trim());
+//        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
     }//GEN-LAST:event_btnThongKeDSActionPerformed
 

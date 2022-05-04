@@ -30,6 +30,20 @@ public class QuanLySanPham extends javax.swing.JFrame {
     List<SanPham> spList = new ArrayList<>();
     DefaultTableModel tableModel;
 
+    String maNV;
+    public String getMaNV() {
+        return maNV;
+    }
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+    String tenNV;
+    public String getTenNV() {
+        return tenNV;
+    }
+    public void setTenNV(String tenNV) {
+        this.tenNV = tenNV;
+    }
     public QuanLySanPham() {
         initComponents();
         setResizable(false);
@@ -340,6 +354,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
     }
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        StaffForm bh = new StaffForm();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 

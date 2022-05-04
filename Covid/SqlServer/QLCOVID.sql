@@ -87,28 +87,29 @@ create table LichSuDangNhap(
 drop table LichSuDuocQuanLy
 drop table LichSuTieuThu
 drop table LichSuThanhToan
+
 create table LichSuDuocQuanLy(
-	maNV nvarchar(20) primary key not null,
+	maNV nvarchar(20),
+	suKien nvarchar(200),
+	thoiGian nvarchar(30)
+)
+
+create table LichSuTieuThu(
+	maNV nvarchar(20) ,
 	thoiGian nvarchar(30),
 	suKien nvarchar(200)
 )
 
-create table LichSuTieuThu(
-	maNV nvarchar(20) primary key not null,
-	thoiGian nvarchar(30),
-	suKien nvarchar(10)
-)
-
 create table LichSuThanhToan(
-	maNV nvarchar(20) primary key not null,
-	thoiGian nvarchar(30),
-	suKien nvarchar(10)
+	maNV nvarchar(20) ,
+	soNo int,
+	thoiGian nvarchar(30)
 )
 
 Drop table DiaDiemDieuTri
 
 create table DiaDiemDieuTri(
-	ten nvarchar(50) primary key not null,
+	ten nvarchar(50)
 	soLuongHienTai int,
 	sucChua int
 )

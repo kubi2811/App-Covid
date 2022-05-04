@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ranco
  */
-public class LichSuMuaHang extends javax.swing.JFrame {
+public class LichSuDuocQuanLy extends javax.swing.JFrame {
 
     String maNV;
     public String getMaNV() {
@@ -34,23 +34,22 @@ public class LichSuMuaHang extends javax.swing.JFrame {
     public void setTenNV(String tenNV) {
         this.tenNV = tenNV;
     }
-    
     /**
-     * Creates new form LichSuMuaHang
+     * Creates new form LichSuDuocQuanLy
      */
     DefaultTableModel tableModel;
     Connection conn = null;
     PreparedStatement pre = null;
     ResultSet rs = null;
     
-    
-    public LichSuMuaHang() {
+    public LichSuDuocQuanLy() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         tableModel = (DefaultTableModel) tblDanhSach.getModel();
-//        getData();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +77,7 @@ public class LichSuMuaHang extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Lịch sử mua hàng");
+        jLabel1.setText("Lịch sử được quản lý");
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/backsmall.png"))); // NOI18N
@@ -106,7 +105,7 @@ public class LichSuMuaHang extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addGap(182, 182, 182)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -127,11 +126,11 @@ public class LichSuMuaHang extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã bệnh nhân", "Tên gói hàng", "Số lượng", "Thời gian"
+                "Mã bệnh nhân", "Sự kiện", "Thời gian"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -170,7 +169,6 @@ public class LichSuMuaHang extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -189,14 +187,14 @@ public class LichSuMuaHang extends javax.swing.JFrame {
 
     private void tblDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachMouseClicked
         // TODO add your handling code here:
-  
+
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select maNV, tenGH, soLuong, thoiGian from MuaGoiHang where maNV = ?";
+            String sql = "select maNV, suKien, thoiGian from LichSuDuocQuanLy where maNV = ?";
             pre = conn.prepareStatement(sql);
             pre.setString(1, getMaNV().trim());
             rs = pre.executeQuery();
@@ -204,19 +202,15 @@ public class LichSuMuaHang extends javax.swing.JFrame {
             while (rs.next()) {
                 Vector arr = new Vector();
                 arr.add(rs.getString("maNV"));
-                arr.add(rs.getString("tenGH"));
-                arr.add(rs.getInt("soLuong"));
+                arr.add(rs.getString("suKien"));
                 arr.add(rs.getString("thoiGian"));
                 tableModel.addRow(arr);
             }
-//            loadDataTable();
-//            tongThanhTien();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         } 
     }//GEN-LAST:event_formWindowOpened
 
-  
     /**
      * @param args the command line arguments
      */
@@ -234,20 +228,20 @@ public class LichSuMuaHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LichSuDuocQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LichSuDuocQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LichSuDuocQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LichSuMuaHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LichSuDuocQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LichSuMuaHang().setVisible(true);
+                new LichSuDuocQuanLy().setVisible(true);
             }
         });
     }

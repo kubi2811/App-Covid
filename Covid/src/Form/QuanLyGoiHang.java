@@ -6,11 +6,8 @@ package Form;
 
 import Connect.JDBCConnection;
 import Dao.GoiHangDao;
-import Dao.HoaDonDao;
 import Objects.ChiTietGoiHang;
-import Objects.ChiTietHoaDon;
 import Objects.GoiHang;
-import Objects.HoaDon;
 import Objects.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,13 +27,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyGoiHang extends javax.swing.JFrame {
     String maNV;
-
     public String getMaNV() {
         return maNV;
     }
-
     public void setMaNV(String maNV) {
         this.maNV = maNV;
+    }
+    String tenNV;
+    public String getTenNV() {
+        return tenNV;
+    }
+    public void setTenNV(String tenNV) {
+        this.tenNV = tenNV;
     }
 //    List<HoaDon> hdList = new ArrayList<>();
     List<TaiKhoan> tkList = new ArrayList<>();
@@ -514,6 +516,10 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        StaffForm bh = new StaffForm();
+        bh.setVisible(true);
+        bh.setMaNV(this.getMaNV().trim());
+        bh.setTenNV(this.getTenNV().trim());
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
