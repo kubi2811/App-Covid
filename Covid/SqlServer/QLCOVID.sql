@@ -79,7 +79,8 @@ create table ThongKe(
 )
 
 create table LichSuDangNhap(
-	maNV nvarchar(20) primary key not null,
+	maNV nvarchar(20),
+	suKien nvarchar(200),
 	thoiGian nvarchar(30),
 	quyenTruycap nvarchar(10)
 )

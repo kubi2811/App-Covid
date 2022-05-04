@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -195,11 +197,18 @@ public class DangNhap extends javax.swing.JFrame {
         ResultSet rs = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "Select * from TaiKhoan inner join NhanVien on TaiKhoan.maNV = NhanVien.maNV where username = ? and pass = ? and quyenTruyCap = ?";
+            String sql = "Select * from TaiKhoan inner join NhanVien on TaiKhoan.maNV = NhanVien.maNV where username = ? and pass = ? and quyenTruyCap = ?; insert into LichSuDangNhap values(?, ?, ?, ?)";
             pre = conn.prepareStatement(sql);
             pre.setString(1, username);
             pre.setString(2, pass);
             pre.setString(3, option);
+            
+            pre.setString(4, username);
+            pre.setString(5, "Tài khoản này đã đăng nhập");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            Date date = new Date();
+            pre.setString(6, formatter.format(date));
+            pre.setString(7, option);
             rs = pre.executeQuery();
 
             if (rs.next()) {
