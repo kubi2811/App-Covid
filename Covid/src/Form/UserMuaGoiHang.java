@@ -47,6 +47,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
 //        tableModel = (DefaultTableModel) tblDanhSach.getModel();
+        loadMaGH();
         
     }
     
@@ -84,11 +85,10 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
-        btnThem1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         txtTongTien3 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        checkGia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -149,7 +149,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
 
         jLabel7.setText("Tên bệnh nhân");
 
-        jLabel8.setText("Tối đa");
+        jLabel8.setText("Tối đa có thể mua");
 
         jLabel9.setText("Số lượng mua");
 
@@ -233,7 +233,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
 
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/them.png"))); // NOI18N
-        btnThem.setText("Thêm gói hàng");
+        btnThem.setText("Mua gói hàng");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -249,38 +249,16 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoa.png"))); // NOI18N
-        btnXoa.setText("Xoá");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
-        btnThem1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnThem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/them.png"))); // NOI18N
-        btnThem1.setText("Mua");
-        btnThem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThem1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(163, 163, 163)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(225, 225, 225))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,9 +266,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -305,6 +281,15 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Tổng tiền gói hàng");
 
+        checkGia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        checkGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/them.png"))); // NOI18N
+        checkGia.setText("Kiểm tra giá");
+        checkGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkGiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -314,7 +299,9 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addGap(34, 34, 34)
                 .addComponent(txtTongTien3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(checkGia, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +309,8 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTongTien3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(checkGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -338,7 +326,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
+                .addGap(162, 162, 162)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -351,7 +339,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -378,6 +366,10 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             return;
         }
         
+        if (Integer.valueOf(soLuongVar.getText()) > Integer.valueOf(mucGioiHanVar.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Không được vượt quá giới hạn mua");
+            return;
+        }
         try {
             conn = JDBCConnection.getConnection();
             String sql = "insert into MuaGoiHang values(?,?,?,?,?)";
@@ -386,9 +378,9 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             pre.setString(2, goiHangVar.getSelectedItem().toString());
             pre.setInt(3, Integer.valueOf(soLuongVar.getText()));
             
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 //            String ngayHetHan = dateFormat.format(ngayHetHanVar.getDate());
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
 
             pre.setInt(4, Integer.valueOf(donGiaVar.getText()));
             pre.setString(5, timeStamp);
@@ -403,7 +395,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
 //        getData();
         maBenhNhanVar.setEnabled(true);
 //        btnSua.setEnabled(false);
-        btnXoa.setEnabled(false);
+//        btnXoa.setEnabled(false);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -415,35 +407,10 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
         donGiaVar.setText("");
         maBenhNhanVar.setEnabled(true);
 //        btnSua.setEnabled(false);
-        btnXoa.setEnabled(false);
+//        btnXoa.setEnabled(false);
+        goiHangVar.setSelectedItem("");
 //        getData();
     }//GEN-LAST:event_btnResetActionPerformed
-
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
-        try {
-            int row = tblDanhSach.getSelectedRow();
-            if (row >= 0) {
-                SanPham sp = spList.get(row);
-                int option = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn xóa không");
-                if (option == 0) {
-                    if (checkMaSPXoa(maBenhNhanVar.getText())) {
-                        SanPhamDao.delete(sp.getMaSP());
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Không xóa được vì thông tin sản phẩm đang tồn tại trong hóa đơn");
-                        return;
-                    }
-                }
-                btnSua.setEnabled(false);
-                btnXoa.setEnabled(false);
-                getData();
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        }
-
-        btnResetActionPerformed(evt);
-    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void goiHangVarPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_goiHangVarPopupMenuWillBecomeInvisible
         //Đổ dữ liệu lên textFiel khi chọn combox MaGH
@@ -455,39 +422,27 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
             rs = pre.executeQuery();
             while (rs.next()) {
                 mucGioiHanVar.setText(rs.getString("gioiHanMua").toString().trim());
-
+                donGiaVar.setText(rs.getString("giaGH").toString().trim());
             }
 //            loadDataTable();
-            tongThanhTien();
+//            tongThanhTien();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Chưa có gói hàng nào");
-        } finally {
-            if (pre != null) {
-                try {
-                    pre.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        btnXoa.setEnabled(false);
+        } 
     }//GEN-LAST:event_goiHangVarPopupMenuWillBecomeInvisible
 
-    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
+    private void checkGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkGiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem1ActionPerformed
+        if (Integer.valueOf(soLuongVar.getText()) > Integer.valueOf(mucGioiHanVar.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Không được vượt quá giới hạn mua");
+            return;
+        }
+        tongThanhTien();
+    }//GEN-LAST:event_checkGiaActionPerformed
 
     private void txtTongTien3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTien3ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtTongTien3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -498,28 +453,7 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tongThanhTien() {
-        try {
-            conn = JDBCConnection.getConnection();
-            String sql = "select sum(soLuongBan * donGia) as 'thanhTien'\n"
-                    + "from ChiTietGoiHang inner join SanPham on SanPham.maSP = ChiTietGoiHang.maSP\n"
-                    + "where maGH = ?";
-            pre = conn.prepareStatement(sql);
-            pre.setString(1, goiHangVar.getSelectedItem().toString().trim());
-            rs = pre.executeQuery();
-            while (rs.next()) {
-                txtTongTien.setText(String.valueOf(rs.getFloat("thanhTien")));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        txtTongTien3.setText(String.valueOf(Integer.valueOf(soLuongVar.getText()) * Integer.valueOf(donGiaVar.getText())));
     }
     private void loadMaGH() {
         Connection conn = null;
@@ -578,9 +512,8 @@ public class UserMuaGoiHang extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThem1;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton checkGia;
     private javax.swing.JTextField donGiaVar;
     private javax.swing.JComboBox<String> goiHangVar;
     private javax.swing.JLabel jLabel1;
