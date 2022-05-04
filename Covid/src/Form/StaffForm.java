@@ -257,9 +257,9 @@ public class StaffForm extends javax.swing.JFrame {
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
         // TODO add your handling code here:
-        BanHang bh = new BanHang();
-        bh.setVisible(true);
-        bh.setMaNV(this.getMaNV());
+//        BanHang bh = new BanHang();
+//        bh.setVisible(true);
+//        bh.setMaNV(this.getMaNV());
         
         QuanLyGoiHang bhh = new QuanLyGoiHang();
         bhh.setVisible(true);

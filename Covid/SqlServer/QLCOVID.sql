@@ -66,7 +66,7 @@ create table GoiHang(
 	giaGH int
 )
 
-create table ChiTietHoaDon(
+create table ChiTietGoiHang(
 	maGH nchar(15) not null,
 	maSP nchar(20) not null,
 	soLuongBan int,
@@ -83,11 +83,39 @@ create table LichSuDangNhap(
 	thoiGian nvarchar(30),
 	quyenTruycap nvarchar(10)
 )
+
+create table LichSuDuocQuanLy(
+	maNV nvarchar(20) primary key not null,
+	thoiGian nvarchar(30),
+	suKien nvarchar(200)
+)
+
+create table LichSuTieuThu(
+	maNV nvarchar(20) primary key not null,
+	thoiGian nvarchar(30),
+	suKien nvarchar(10)
+)
+
+create table LichSuThanhToan(
+	maNV nvarchar(20) primary key not null,
+	thoiGian nvarchar(30),
+	suKien nvarchar(10)
+)
+
 Drop table DiaDiemDieuTri
+
 create table DiaDiemDieuTri(
 	ten nvarchar(50) primary key not null,
 	soLuongHienTai int,
 	sucChua int
+)
+
+create table MuaGoiHang(
+	maNV nchar(20),
+	tenGH nvarchar(20),
+	soLuong int,
+	giaGH int,
+	thoiGian date
 )
 
 
