@@ -7,7 +7,7 @@ package Objects;
 
 /**
  *
- * @author Ho Nam
+ * @author Ranco
  */
 public class ThongKe {
     private float thanhTien;

@@ -7,23 +7,38 @@ package Objects;
 
 /**
  *
- * @author Ho Nam
+ * @author Ranco
  */
 public class SanPham {
+
     protected String maSP;
     protected String tenSP;
+    protected String donVi;
     protected float donGia;
     protected int soLuong;
+    
+    public SanPham(String maSP, String tenSP, String donVi, float donGia, int soLuong) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.donVi = donVi;
+        this.donGia = donGia;
+        this.soLuong = soLuong;
+    }
+    
+    
+    public String getDonVi() {
+        return donVi;
+    }
+
+    public void setDonVi(String donVi) {
+        this.donVi = donVi;
+    }
+    
 
     public SanPham() {
     }
 
-    public SanPham(String maSP, String tenSP, float donGia, int soLuong) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.donGia = donGia;
-        this.soLuong = soLuong;
-    }
+    
 
     public String getMaSP() {
         return maSP;

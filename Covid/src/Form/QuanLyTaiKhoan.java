@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package Form;
-
+/**
+ *
+ * @author ranco
+ */
 import Connect.JDBCConnection;
 import Dao.TaiKhoanDao;
 import Objects.TaiKhoan;
@@ -35,7 +38,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 //        loadMaNV();
         tableModel = (DefaultTableModel) tblDanhSach.getModel();
         getData();
-        btnSua.setEnabled(false);
+        btnSua.setEnabled(true);
         btnXoa.setEnabled(false);
     }
 
@@ -151,7 +154,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         jLabel7.setText("Vai trò");
 
-        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff" }));
+        cbQuyenTruyCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "LockAcc" }));
 
         jLabel8.setText("Tên đăng nhập");
 
@@ -380,7 +383,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
     private void tblDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachMouseClicked
         // TODO add your handling code here:
-
+        btnSua.setEnabled(true);
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
             TaiKhoan tk = tkList.get(row);

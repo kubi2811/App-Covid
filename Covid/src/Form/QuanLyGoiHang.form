@@ -30,19 +30,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cbMaHD" min="-2" pref="139" max="-2" attributes="0"/>
+                      <Component id="cbMaGH" min="-2" pref="139" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="lblSoLuongCon" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbMaHD" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="cbMaGH" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -102,7 +102,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="228" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
                   <Component id="btnThoat" min="-2" pref="141" max="-2" attributes="0"/>
@@ -177,29 +177,41 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Component id="mucGioiHanVar" min="-2" pref="146" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="maGHVar" min="-2" pref="146" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtMaHoaDon" max="32767" attributes="0"/>
-                              <Component id="dateNgayLap" pref="180" max="32767" attributes="0"/>
+                              <Component id="tenGHVar" max="32767" attributes="0"/>
+                              <Component id="donGiaGHVar" min="-2" pref="146" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtTenKhachHang" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="ngayHetHanVar" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="dateNgayLap1" pref="180" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,21 +220,24 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtMaHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tenGHVar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="maGHVar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mucGioiHanVar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="donGiaGHVar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="dateNgayLap" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="dateNgayLap1" min="-2" max="-2" attributes="0"/>
+                      <Component id="ngayHetHanVar" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -230,26 +245,38 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Th&#x1edd;i gian gi&#x1edb;i h&#x1ea1;n"/>
+            <Property name="text" type="java.lang.String" value="Th&#x1edd;i gian h&#x1ebf;t h&#x1ea1;n"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dateNgayLap">
+        <Component class="com.toedter.calendar.JDateChooser" name="ngayHetHanVar">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
-            <Property name="text" type="java.lang.String" value="T&#xea;n g&#xf3;i "/>
+            <Property name="text" type="java.lang.String" value="T&#xea;n g&#xf3;i h&#xe0;ng"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaHoaDon">
+        <Component class="javax.swing.JTextField" name="tenGHVar">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTenKhachHang">
+        <Component class="javax.swing.JTextField" name="mucGioiHanVar">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="M&#x1ee9;c gi&#x1edb;i h&#x1ea1;n m&#x1ed7;i ng&#x1b0;&#x1edd;i"/>
+            <Property name="text" type="java.lang.String" value="M&#x1ee9;c gi&#x1edb;i h&#x1ea1;n"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dateNgayLap1">
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe3; g&#xf3;i h&#xe0;ng "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="maGHVar">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="donGiaGHVar">
         </Component>
       </SubComponents>
     </Container>
@@ -280,8 +307,8 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cbTenSP" max="32767" attributes="0"/>
-                      <Component id="txtMaSP" pref="174" max="32767" attributes="0"/>
+                      <Component id="tenSPVar" max="32767" attributes="0"/>
+                      <Component id="maSPVar" pref="174" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -295,8 +322,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtDonGia" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtSoLuongBan" alignment="0" max="32767" attributes="0"/>
+                      <Component id="donGiaSPVar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="soLuongSPVar" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -310,22 +337,22 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMaSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="maSPVar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbTenSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tenSPVar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtDonGia" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="donGiaSPVar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtSoLuongBan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="soLuongSPVar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -346,23 +373,23 @@
             <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDonGia">
+        <Component class="javax.swing.JTextField" name="donGiaSPVar">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSoLuongBan">
+        <Component class="javax.swing.JTextField" name="soLuongSPVar">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbTenSP">
+        <Component class="javax.swing.JComboBox" name="tenSPVar">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbTenSPPopupMenuWillBecomeInvisible"/>
+            <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="tenSPVarPopupMenuWillBecomeInvisible"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -373,7 +400,7 @@
             <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaSP">
+        <Component class="javax.swing.JTextField" name="maSPVar">
         </Component>
       </SubComponents>
     </Container>
@@ -444,7 +471,7 @@
                   <Component id="btnReset" min="-2" pref="166" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="btnThemHoaDon" min="-2" pref="173" max="-2" attributes="0"/>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnThem" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btnXoa" min="-2" pref="147" max="-2" attributes="0"/>
@@ -521,7 +548,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/xoa.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Xo&#xe1; h&#xe0;ng"/>
+            <Property name="text" type="java.lang.String" value="Xo&#xe1; g&#xf3;i h&#xe0;ng"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
@@ -577,14 +604,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="cbMaHD">
+    <Component class="javax.swing.JComboBox" name="cbMaGH">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbMaHDPopupMenuWillBecomeInvisible"/>
+        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbMaGHPopupMenuWillBecomeInvisible"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

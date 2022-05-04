@@ -5,8 +5,11 @@
 package Form;
 
 import Connect.JDBCConnection;
+import Dao.GoiHangDao;
 import Dao.HoaDonDao;
+import Objects.ChiTietGoiHang;
 import Objects.ChiTietHoaDon;
+import Objects.GoiHang;
 import Objects.HoaDon;
 import Objects.TaiKhoan;
 import java.sql.Connection;
@@ -35,9 +38,13 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
-    List<HoaDon> hdList = new ArrayList<>();
+//    List<HoaDon> hdList = new ArrayList<>();
     List<TaiKhoan> tkList = new ArrayList<>();
-    List<ChiTietHoaDon> cthdList = new ArrayList<>();
+//    List<ChiTietHoaDon> cthdList = new ArrayList<>();
+    
+    List<GoiHang> ghList = new ArrayList<>();
+    List<ChiTietGoiHang> ctghList = new ArrayList<>();
+    
     DefaultTableModel tableModel;
     Connection conn = null;
     PreparedStatement pre = null;
@@ -50,8 +57,8 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         tableModel = (DefaultTableModel) tblDanhSach.getModel();
-        txtDonGia.setEnabled(false);
-        txtMaSP.setEnabled(false);
+        donGiaSPVar.setEnabled(false);
+        maSPVar.setEnabled(false);
         txtTongTien.setEditable(false);
         btnXoa.setEnabled(false);
 //        txtMaNV.setEnabled(false);
@@ -73,21 +80,24 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        dateNgayLap = new com.toedter.calendar.JDateChooser();
+        ngayHetHanVar = new com.toedter.calendar.JDateChooser();
         jLabel11 = new javax.swing.JLabel();
-        txtMaHoaDon = new javax.swing.JTextField();
-        txtTenKhachHang = new javax.swing.JTextField();
+        tenGHVar = new javax.swing.JTextField();
+        mucGioiHanVar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        dateNgayLap1 = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        maGHVar = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        donGiaGHVar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtDonGia = new javax.swing.JTextField();
+        donGiaSPVar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtSoLuongBan = new javax.swing.JTextField();
-        cbTenSP = new javax.swing.JComboBox<>();
+        soLuongSPVar = new javax.swing.JTextField();
+        tenSPVar = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        txtMaSP = new javax.swing.JTextField();
+        maSPVar = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         txtTongTien = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -99,7 +109,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         btnThemHoaDon = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDanhSach = new javax.swing.JTable();
-        cbMaHD = new javax.swing.JComboBox<>();
+        cbMaGH = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         lblSoLuongCon = new javax.swing.JLabel();
 
@@ -139,7 +149,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(256, 256, 256)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,52 +168,68 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nhập gói nhu yếu phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jLabel5.setText("Thời gian giới hạn");
+        jLabel5.setText("Thời gian hết hạn");
 
-        jLabel11.setText("Tên gói ");
+        jLabel11.setText("Tên gói hàng");
 
-        jLabel3.setText("Mức giới hạn mỗi người");
+        jLabel3.setText("Mức giới hạn");
+
+        jLabel14.setText("Mã gói hàng ");
+
+        jLabel4.setText("Đơn giá");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(mucGioiHanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(maGHVar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel5))
-                        .addGap(42, 42, 42)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMaHoaDon)
-                            .addComponent(dateNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                            .addComponent(tenGHVar)
+                            .addComponent(donGiaGHVar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(dateNgayLap1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ngayHetHanVar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(tenGHVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(maGHVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(mucGioiHanVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(donGiaGHVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(dateNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateNgayLap1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
+                    .addComponent(ngayHetHanVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nhập sản phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -214,11 +240,11 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
         jLabel9.setText("Số lượng");
 
-        cbTenSP.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        tenSPVar.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cbTenSPPopupMenuWillBecomeInvisible(evt);
+                tenSPVarPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -240,8 +266,8 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(23, 23, 23)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbTenSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                    .addComponent(tenSPVar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(maSPVar, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -251,8 +277,8 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                         .addComponent(jLabel8)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDonGia)
-                    .addComponent(txtSoLuongBan))
+                    .addComponent(donGiaSPVar)
+                    .addComponent(soLuongSPVar))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -263,18 +289,18 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(txtMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(maSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(cbTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tenSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(donGiaSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSoLuongBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(soLuongSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -342,7 +368,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoa.png"))); // NOI18N
-        btnXoa.setText("Xoá hàng");
+        btnXoa.setText("Xoá gói hàng");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -367,7 +393,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnThemHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThem)
                 .addGap(33, 33, 33)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,11 +439,11 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDanhSach);
 
-        cbMaHD.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        cbMaGH.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cbMaHDPopupMenuWillBecomeInvisible(evt);
+                cbMaGHPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -436,18 +462,18 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbMaGH, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
                         .addComponent(lblSoLuongCon)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -472,7 +498,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbMaGH, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,16 +522,16 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         System.exit(1);
     }//GEN-LAST:event_btnThoatActionPerformed
 
-    private void cbTenSPPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbTenSPPopupMenuWillBecomeInvisible
+    private void tenSPVarPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_tenSPVarPopupMenuWillBecomeInvisible
         try {
             conn = JDBCConnection.getConnection();
             String sql = "select * from SanPham where tenSP = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, cbTenSP.getSelectedItem().toString());
+            pre.setString(1, tenSPVar.getSelectedItem().toString());
             rs = pre.executeQuery();
             while (rs.next()) {
-                txtMaSP.setText(rs.getString("maSP").trim());
-                txtDonGia.setText(rs.getString("donGia").trim());
+                maSPVar.setText(rs.getString("maSP").trim());
+                donGiaSPVar.setText(rs.getString("donGia").trim());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -513,7 +539,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Chưa có sản phẩm nào");
         }
         getSoluongCon();
-    }//GEN-LAST:event_cbTenSPPopupMenuWillBecomeInvisible
+    }//GEN-LAST:event_tenSPVarPopupMenuWillBecomeInvisible
 
     private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
         // TODO add your handling code here:
@@ -522,50 +548,50 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
 
-        if (txtMaSP.getText().isEmpty() && txtDonGia.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Chọn tên hàng cần thêm");
+        if (maSPVar.getText().isEmpty() && donGiaSPVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Chọn tên sản phẩm cần thêm");
             return;
         }
-        if (txtSoLuongBan.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Số lượng bán không được trống");
+        if (soLuongSPVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Số lượng không được trống");
             return;
         }
 
-        int soLuong = Integer.parseInt(txtSoLuongBan.getText());
+        int soLuong = Integer.parseInt(soLuongSPVar.getText());
         if (soLuong <= 0) {
-            JOptionPane.showMessageDialog(rootPane, "Số lượng bán phải lớn hơn 0");
+            JOptionPane.showMessageDialog(rootPane, "Số lượng phải lớn hơn 0");
             return;
         }
         if (soLuong > getSoLuong()) {
-            JOptionPane.showMessageDialog(rootPane, "Số lượng bán lớn hơn số lượng hàng đang có");
+            JOptionPane.showMessageDialog(rootPane, "Số lượng lớn hơn số lượng hàng đang có");
             return;
         }
 
         try {
-            String maHD = cbMaHD.getSelectedItem().toString().trim();
-            String maSP = txtMaSP.getText().trim();
-            int soLuongBan = Integer.parseInt(txtSoLuongBan.getText().trim());
-            ChiTietHoaDon cthd = new ChiTietHoaDon(maHD, maSP, soLuongBan);
+            String maGH = cbMaGH.getSelectedItem().toString().trim();
+            String maSP = maSPVar.getText().trim();
+            int soLuongBan = Integer.parseInt(soLuongSPVar.getText().trim());
+            ChiTietGoiHang ctgh = new ChiTietGoiHang(maGH, maSP, soLuongBan);
             conn = JDBCConnection.getConnection();
-            String sql1 = "insert into ChiTietHoaDon values(?,?,?)";
+            String sql1 = "insert into ChiTietGoiHang values(?,?,?)";
             pre = conn.prepareStatement(sql1);
-            pre.setString(1, cthd.getMaHD());
-            pre.setString(2, cthd.getMaSP());
-            pre.setInt(3, cthd.getSoLuongBan());
+            pre.setString(1, ctgh.getMaGH());
+            pre.setString(2, ctgh.getMaSP());
+            pre.setInt(3, ctgh.getSoLuongBan());
             int n =  pre.executeUpdate();
 
             if(n > 0){
-                String sql2 = "update SanPham set soLuong = soLuong - ? from SanPham inner join ChiTietHoaDon on ChiTietHoaDon.maSP= SanPham.maSP where ChiTietHoaDon.maSP = ? and ChiTietHoaDon.maHD= ?";
+                String sql2 = "update SanPham set soLuong = soLuong - ? from SanPham inner join ChiTietGoiHang on ChiTietGoiHang.maSP = SanPham.maSP where ChiTietGoiHang.maSP = ? and ChiTietGoiHang.maGH = ?";
                 pre = conn.prepareStatement(sql2);
-                pre.setInt(1, cthd.getSoLuongBan());
-                pre.setString(2, cthd.getMaSP());
-                pre.setString(3, cthd.getMaHD());
+                pre.setInt(1, ctgh.getSoLuongBan());
+                pre.setString(2, ctgh.getMaSP());
+                pre.setString(3, ctgh.getMaGH());
                 pre.executeUpdate();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Trùng đơn hàng");
+            JOptionPane.showMessageDialog(rootPane, "Trùng gói hàng");
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Số lượng bán phải là số và không trống!");
+            JOptionPane.showMessageDialog(rootPane, "Số lượng phải là số và không trống!");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Khoá chính");
         } finally {
@@ -593,29 +619,32 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtMaHoaDon.setText("");
-        txtSoDT.setText("");
-        txtTenKhachHang.setText("");
-        txtDiaChi.setText("");
-        dateNgayLap.setDate(null);
-        txtMaSP.setText("");
-        txtDonGia.setText("");
-        txtSoLuongBan.setText("");
+        tenGHVar.setText("");
+        maGHVar.setText("");
+        mucGioiHanVar.setText("");
+        ngayHetHanVar.setDate(null);
+        maSPVar.setText("");
+        donGiaSPVar.setText("");
+        soLuongSPVar.setText("");
+        donGiaGHVar.setText("");
         LoadTenSP();
         btnXoa.setEnabled(false);
-        txtMaNV.setText(this.getMaNV());
+        
+        DefaultTableModel model2 = (DefaultTableModel)tblDanhSach.getModel();
+        model2.setRowCount(0);
+//        txtMaNV.setText(this.getMaNV());
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
         // TODO add your handling code here:
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select ChiTietHoaDon.maSP, tenSP, soLuongBan, donGia, soLuongBan * donGia as 'thanhTien'\n"
-            + "from ChiTietHoaDon inner join SanPham on SanPham.maSP = ChiTietHoaDon.maSP\n"
+            String sql = "select ChiTietGoiHang.maSP, tenSP, soLuongBan, donGia, soLuongBan * donGia as 'thanhTien'\n"
+            + "from ChiTietGoiHang inner join SanPham on SanPham.maSP = ChiTietGoiHang.maSP\n"
             + "where maHD = ?\n"
             + "order by donGia\n";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, cbMaHD.getSelectedItem().toString().trim());
+            pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
             rs = pre.executeQuery();
             tableModel.setRowCount(0);
             while (rs.next()) {
@@ -646,10 +675,10 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "delete from ChiTietHoaDon where maSP = ? and maHD = ?";
+            String sql = "delete from ChiTietGoiHang where maSP = ? and maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, txtMaSP.getText().trim());
-            pre.setString(2, cbMaHD.getSelectedItem().toString().trim());
+            pre.setString(1, maSPVar.getText().trim());
+            pre.setString(2, cbMaGH.getSelectedItem().toString().trim());
 
             pre.executeUpdate();
 
@@ -663,85 +692,86 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
     private void btnThemHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHoaDonActionPerformed
         // TODO add your handling code here:
-        if (txtMaHoaDon.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Mã hóa đơn không được trống");
+        if (maGHVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Mã gói hàng không được trống");
             return;
         }
-        if (txtSoDT.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Số điện thoại không được trống");
+        
+        if (tenGHVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Tên gói hàng không được trống");
             return;
         }
-        if (txtTenKhachHang.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Tên khách hàng không được trống");
+        
+        if (mucGioiHanVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Mức giới hạn không được trống");
             return;
         }
-        if (dateNgayLap.getDate() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Ngày lập không được trống");
+        if (ngayHetHanVar.getDate() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Ngày hết hạn không được trống");
             return;
         }
-        if (txtDiaChi.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Địa chỉ không được trống");
+        if (donGiaGHVar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Đơn giá không được trống");
             return;
         }
         try {
-            String maHD = txtMaHoaDon.getText().trim();
-            String maNV = txtMaNV.getText().trim();
-            String soDT = txtSoDT.getText().trim();
-            String tenKH = txtTenKhachHang.getText().trim();
-            String diaChi = txtDiaChi.getText().trim();
+            String maGH = maGHVar.getText().trim();
+            String tenGH = tenGHVar.getText().trim();
+            int gioiHanMua =  Integer. valueOf(mucGioiHanVar.getText().trim());
+            int giaGH = Integer. valueOf(donGiaGHVar.getText().trim());
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-            String ngayLap = dateFormat.format(dateNgayLap.getDate());
+            String ngayHetHan = dateFormat.format(ngayHetHanVar.getDate());
 
-            if (checkMaHD()) {
-                HoaDon themHD = new HoaDon(maHD, maNV, ngayLap, soDT, tenKH, diaChi);
-                HoaDonDao.insertHD(themHD);
-                JOptionPane.showMessageDialog(rootPane, "Thêm hóa đơn thành công");
+            if (checkMaGH()) {
+                GoiHang themGH = new GoiHang(maGH, tenGH, gioiHanMua, ngayHetHan, giaGH);
+                GoiHangDao.insertGH(themGH);
+                JOptionPane.showMessageDialog(rootPane, "Thêm gói hàng thành công");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Mã hoá đơn không được trùng");
+                JOptionPane.showMessageDialog(rootPane, "Mã gói hàng không được trùng");
                 return;
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
-        loadMaHD();
+        loadMaGH();
     }//GEN-LAST:event_btnThemHoaDonActionPerformed
 
     private void tblDanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachMouseClicked
         // TODO add your handling code here:
         int row = tblDanhSach.getSelectedRow();
         if (row >= 0) {
-            txtMaSP.setText(tableModel.getValueAt(row, 0).toString().trim());
-            cbTenSP.setSelectedItem(tableModel.getValueAt(row, 1).toString().trim());
-            txtSoLuongBan.setText(tableModel.getValueAt(row, 2).toString().trim());
-            txtDonGia.setText(tableModel.getValueAt(row, 3).toString().trim());
+            maSPVar.setText(tableModel.getValueAt(row, 0).toString().trim());
+            tenSPVar.setSelectedItem(tableModel.getValueAt(row, 1).toString().trim());
+            soLuongSPVar.setText(tableModel.getValueAt(row, 2).toString().trim());
+            donGiaSPVar.setText(tableModel.getValueAt(row, 3).toString().trim());
         }
         btnXoa.setEnabled(true);
         getSoluongCon();
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
-    private void cbMaHDPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbMaHDPopupMenuWillBecomeInvisible
-        //Đổ dữ liệu lên textFiel khi chọn combox MaHD
+    private void cbMaGHPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbMaGHPopupMenuWillBecomeInvisible
+        //Đổ dữ liệu lên textFiel khi chọn combox MaGH
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from HoaDon where maHD = ?";
+            String sql = "select * from GoiHang where maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, cbMaHD.getSelectedItem().toString().trim());
+            pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
             rs = pre.executeQuery();
             while (rs.next()) {
-                txtMaHoaDon.setText(rs.getString("maHD").toString().trim());
-                txtSoDT.setText(rs.getString("soDT").toString().trim());
-                txtTenKhachHang.setText(rs.getString("tenKH").toString().trim());
-                txtMaNV.setText(rs.getString("maNV").toString().trim());
-                dateNgayLap.setDate(rs.getDate("ngayLap"));
-                txtDiaChi.setText(rs.getString("diaChi").toString().trim());
+                maGHVar.setText(rs.getString("maGH").toString().trim());
+                tenGHVar.setText(rs.getString("tenGH").toString().trim());
+                mucGioiHanVar.setText(rs.getString("gioiHanMua").toString().trim());
+                ngayHetHanVar.setDate(rs.getDate("ngayHetHan"));
+                donGiaGHVar.setText(rs.getString("giaGH").toString().trim());
+                
             }
             loadDataTable();
             tongThanhTien();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Chưa có hoá đơn nào");
+            JOptionPane.showMessageDialog(rootPane, "Chưa có gói hàng nào");
         } finally {
             if (pre != null) {
                 try {
@@ -759,22 +789,22 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             }
         }
         btnXoa.setEnabled(false);
-    }//GEN-LAST:event_cbMaHDPopupMenuWillBecomeInvisible
+    }//GEN-LAST:event_cbMaGHPopupMenuWillBecomeInvisible
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 //        txtMaNV.setText(this.getMaNV());
-        loadMaHD();
+        loadMaGH();
     }//GEN-LAST:event_formWindowOpened
 
-    private boolean checkMaHD() {
+    private boolean checkMaGH() {
         try {
             conn = JDBCConnection.getConnection();
-            String sqlCheck = "SELECT maHD FROM HoaDon";
+            String sqlCheck = "SELECT maGH FROM GoiHang";
             PreparedStatement pre = conn.prepareStatement(sqlCheck);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                if (this.txtMaHoaDon.getText().trim().equalsIgnoreCase(rs.getString("maHD").toString().trim())) {
+                if (this.tenGHVar.getText().trim().equalsIgnoreCase(rs.getString("maGH").toString().trim())) {
                     return false;
                 }
             }
@@ -793,14 +823,14 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     }
     
     private void LoadTenSP() {
-        cbTenSP.removeAllItems();
+        tenSPVar.removeAllItems();
         try {
             conn = JDBCConnection.getConnection();
             String sql = "select tenSP from SanPham";
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
-                cbTenSP.addItem(rs.getString("tenSP").trim());
+                tenSPVar.addItem(rs.getString("tenSP").trim());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -814,7 +844,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             String sql = "select soLuong from SanPham where maSP = ?";
 
             pre = conn.prepareStatement(sql);
-            pre.setString(1, txtMaSP.getText());
+            pre.setString(1, maSPVar.getText());
             rs = pre.executeQuery();
             while (rs.next()) {
                 soluong = rs.getInt("soLuong");
@@ -848,7 +878,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             String sql = "select soLuong from SanPham where maSP = ?";
 
             pre = conn.prepareStatement(sql);
-            pre.setString(1, txtMaSP.getText());
+            pre.setString(1, maSPVar.getText());
             rs = pre.executeQuery();
             while (rs.next()) {
                 lblSoLuongCon.setText("Số lượng còn: " + rs.getInt("soLuong"));
@@ -877,11 +907,11 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     private void loadDataTable() {
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select ChiTietHoaDon.maSP, tenSP, soLuongBan, donGia, soLuongBan * donGia as 'thanhTien'\n"
-                    + "from ChiTietHoaDon inner join SanPham on SanPham.maSP = ChiTietHoaDon.maSP\n"
-                    + "where maHD = ?";
+            String sql = "select ChiTietGoiHang.maSP, tenSP, soLuongBan, donGia, soLuongBan * donGia as 'thanhTien'\n"
+                    + "from ChiTietGoiHang inner join SanPham on SanPham.maSP = ChiTietGoiHang.maSP\n"
+                    + "where maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, cbMaHD.getSelectedItem().toString().trim());
+            pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
             rs = pre.executeQuery();
             tableModel.setRowCount(0);
             while (rs.next()) {
@@ -912,10 +942,10 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         try {
             conn = JDBCConnection.getConnection();
             String sql = "select sum(soLuongBan * donGia) as 'thanhTien'\n"
-                    + "from ChiTietHoaDon inner join SanPham on SanPham.maSP = ChiTietHoaDon.maSP\n"
-                    + "where maHD = ?";
+                    + "from ChiTietGoiHang inner join SanPham on SanPham.maSP = ChiTietGoiHang.maSP\n"
+                    + "where maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, cbMaHD.getSelectedItem().toString().trim());
+            pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
             rs = pre.executeQuery();
             while (rs.next()) {
                 txtTongTien.setText(String.valueOf(rs.getFloat("thanhTien")));
@@ -932,19 +962,19 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             }
         }
     }
-    private void loadMaHD() {
+    private void loadMaGH() {
         Connection conn = null;
         PreparedStatement pre = null;
         ResultSet rs = null;
-        cbMaHD.removeAllItems();
+        cbMaGH.removeAllItems();
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from HoaDon where maNV = ?";
+            String sql = "select * from GoiHang where maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, txtMaNV.getText().trim());
+            pre.setString(1, maGHVar.getText().trim());
             rs = pre.executeQuery();
             while (rs.next()) {
-                cbMaHD.addItem(rs.getString("maHD").trim());
+                cbMaGH.addItem(rs.getString("maGH").trim());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -993,15 +1023,16 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     private javax.swing.JButton btnThemHoaDon;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbMaHD;
-    private javax.swing.JComboBox<String> cbTenSP;
-    private com.toedter.calendar.JDateChooser dateNgayLap;
-    private com.toedter.calendar.JDateChooser dateNgayLap1;
+    private javax.swing.JComboBox<String> cbMaGH;
+    private javax.swing.JTextField donGiaGHVar;
+    private javax.swing.JTextField donGiaSPVar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1014,12 +1045,14 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSoLuongCon;
+    private javax.swing.JTextField maGHVar;
+    private javax.swing.JTextField maSPVar;
+    private javax.swing.JTextField mucGioiHanVar;
+    private com.toedter.calendar.JDateChooser ngayHetHanVar;
+    private javax.swing.JTextField soLuongSPVar;
     private javax.swing.JTable tblDanhSach;
-    private javax.swing.JTextField txtDonGia;
-    private javax.swing.JTextField txtMaHoaDon;
-    private javax.swing.JTextField txtMaSP;
-    private javax.swing.JTextField txtSoLuongBan;
-    private javax.swing.JTextField txtTenKhachHang;
+    private javax.swing.JTextField tenGHVar;
+    private javax.swing.JComboBox<String> tenSPVar;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }

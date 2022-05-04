@@ -147,17 +147,22 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnBanHang" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnBanHang" min="-2" pref="101" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" max="32767" attributes="0"/>
-                              <Component id="btnQLSanPham" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnQLSanPham" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -299,7 +304,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; d&#x1ecb;ch v&#x1ee5;"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; s&#x1ea3;n ph&#x1ea9;m"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -310,7 +315,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n d&#x1ecb;ch v&#x1ee5;"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; g&#xf3;i h&#xe0;ng"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">

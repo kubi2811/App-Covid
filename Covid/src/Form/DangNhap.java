@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author ranco
+ */
 public class DangNhap extends javax.swing.JFrame {
 
     /**
@@ -208,7 +212,7 @@ public class DangNhap extends javax.swing.JFrame {
                 } else if (rs.getString("quyenTruyCap").equalsIgnoreCase("admin")){
                     new AdminForm().setVisible(true);
                     this.dispose();
-                } else {
+                } else if (rs.getString("quyenTruyCap").equalsIgnoreCase("user")){
                    if(rs.getString("pass").trim().equals("password")){
                        DoiPassLanDau dp = new DoiPassLanDau();
                        dp.setMaNV(rs.getString("maNV"));
@@ -224,6 +228,8 @@ public class DangNhap extends javax.swing.JFrame {
                         this.dispose();
                    }
                     
+                } else{
+                    JOptionPane.showMessageDialog(rootPane, "Tài khoản của bạn đã bị khóa", "Error", 1);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng", "Error", 1);

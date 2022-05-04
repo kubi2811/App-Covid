@@ -30,7 +30,7 @@ public class SanPhamDao {
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
-                SanPham sp = new SanPham(rs.getString("maSP"), rs.getString("tenSP"), rs.getFloat("donGia"), rs.getInt("soLuong"));
+                SanPham sp = new SanPham(rs.getString("maSP"), rs.getString("tenSP"), rs.getString("donVi"), rs.getFloat("donGia"), rs.getInt("soLuong"));
                 spList.add(sp);
             }
         } catch (SQLException ex) {
@@ -62,12 +62,13 @@ public class SanPhamDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into SanPham values(?,?,?,?)";
+            String sql = "insert into SanPham values(?,?,?,?,?)";
             pre = conn.prepareStatement(sql);
             pre.setString(1, sp.getMaSP());
             pre.setString(2, sp.getTenSP());
-            pre.setFloat(3, sp.getDonGia());
-            pre.setInt(4, sp.getSoLuong());
+            pre.setString(3, sp.getDonVi());
+            pre.setFloat(4, sp.getDonGia());
+            pre.setInt(5, sp.getSoLuong());
             
             pre.executeUpdate();
             
@@ -96,12 +97,13 @@ public class SanPhamDao {
         PreparedStatement pre = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update SanPham set tenSP = ?, donGia = ?, soLuong = ? where maSP = ?";
+            String sql = "update SanPham set tenSP = ?, donVi = ?, donGia = ?, soLuong = ? where maSP = ?";
             pre = conn.prepareStatement(sql);
             pre.setString(1, sp.getTenSP());
-            pre.setFloat(2, sp.getDonGia());
-            pre.setInt(3, sp.getSoLuong());
-            pre.setString(4, sp.getMaSP());
+            pre.setString(2, sp.getDonVi());
+            pre.setFloat(3, sp.getDonGia());
+            pre.setInt(4, sp.getSoLuong());
+            pre.setString(5, sp.getMaSP());
             
             pre.executeUpdate();
             
@@ -168,7 +170,7 @@ public class SanPhamDao {
             pre.setString(1, "%"+tenSP +"%");
             rs = pre.executeQuery();
             while (rs.next()) {
-                SanPham sp = new SanPham(rs.getString("maSP"), rs.getString("tenSP"), rs.getFloat("donGia"), rs.getInt("soLuong"));
+                SanPham sp = new SanPham(rs.getString("maSP"), rs.getString("tenSP"), rs.getString("donVi"), rs.getFloat("donGia"), rs.getInt("soLuong"));
                 spList.add(sp);
             }
         } catch (SQLException ex) {

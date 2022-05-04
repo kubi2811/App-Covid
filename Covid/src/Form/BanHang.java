@@ -23,7 +23,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ *
+ * @author ranco
+ */
 public class BanHang extends javax.swing.JFrame {
 
     /**

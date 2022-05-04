@@ -8,7 +8,7 @@ package Objects;
 
 /**
  *
- * @author Ho Nam
+ * @author Ranco
  */
 public class HoaDon extends NhanVien {
     private String maHD;

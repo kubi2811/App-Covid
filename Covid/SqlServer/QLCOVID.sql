@@ -28,10 +28,12 @@ create table TaiKhoan(
 	quyenTruyCap nvarchar(15) not null
 )
 
+drop table SanPham
 create table SanPham(
 	maSP nchar(20) primary key not null,
 	tenSP nvarchar(40),
-	donGia float,
+	donVi nvarchar(20),
+	donGia int,
 	soLuong int
 )
 
@@ -40,7 +42,7 @@ create table KhachHang(
 	tenKH nvarchar(30),
 	diaChi nvarchar(50)
 )
-create table HoaDon(
+/*create table HoaDon(
 	maHD nchar(15) primary key not null,
 	maNV nchar(20),
 	soDT nchar(15),
@@ -54,6 +56,21 @@ create table ChiTietHoaDon(
 	maSP nchar(20) not null,
 	soLuongBan int,
 	primary key(maHD, maSP)
+)*/
+
+create table GoiHang(
+	maGH nchar(15) primary key not null,
+	tenGH nvarchar(20),
+	gioiHanMua int,
+	ngayHetHan date,
+	giaGH int
+)
+
+create table ChiTietHoaDon(
+	maGH nchar(15) not null,
+	maSP nchar(20) not null,
+	soLuongBan int,
+	primary key(maGH, maSP)
 )
 
 create table ThongKe(

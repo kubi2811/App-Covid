@@ -7,7 +7,7 @@ package Objects;
 
 /**
  *
- * @author Ho Nam
+ * @author Ranco
  */
 public class NhanVien {
     private String maNV;

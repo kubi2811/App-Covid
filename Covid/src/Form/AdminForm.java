@@ -1,6 +1,9 @@
 
 package Form;
-
+/**
+ *
+ * @author ranco
+ */
 public class AdminForm extends javax.swing.JFrame {
 
     /**

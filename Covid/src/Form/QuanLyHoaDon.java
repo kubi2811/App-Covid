@@ -5,6 +5,10 @@
  */
 package Form;
 
+/**
+ *
+ * @author ranco
+ */
 import Connect.JDBCConnection;
 import Dao.ChiTietHoaDonDao;
 import Dao.HoaDonDao;

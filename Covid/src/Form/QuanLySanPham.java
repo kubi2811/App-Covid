@@ -5,6 +5,10 @@
  */
 package Form;
 
+/**
+ *
+ * @author ranco
+ */
 import Connect.JDBCConnection;
 import Dao.SanPhamDao;
 import Objects.SanPham;
@@ -51,13 +55,15 @@ public class QuanLySanPham extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtMaSanPham = new javax.swing.JTextField();
+        maSPVar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtTenSanPham = new javax.swing.JTextField();
+        tenSPVar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtDonGia = new javax.swing.JTextField();
+        donViSPVar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtSoLuong = new javax.swing.JTextField();
+        soLuongVar = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        donGiaVar = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -117,36 +123,43 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setText("Mã dịch vụ");
+        jLabel6.setText("Mã sản phẩm");
 
-        jLabel7.setText("Tên dịch vụ");
+        jLabel7.setText("Tên sản phẩm");
 
-        jLabel8.setText("Đơn giá");
+        jLabel8.setText("Đơn vị");
 
         jLabel9.setText("Số lượng");
+
+        jLabel10.setText("Đơn giá");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tenSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(donViSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addGap(30, 30, 30)
+                        .addComponent(donGiaVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(soLuongVar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,16 +167,19 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(donViSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(donGiaVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtTenSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tenSPVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(soLuongVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -249,11 +265,11 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Đơn giá"
+                "Mã sản phẩm", "Tên sản phẩm", "Đơn vị", "Đơn giá", "Số lượng"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -306,15 +322,16 @@ public class QuanLySanPham extends javax.swing.JFrame {
             tableModel.addRow(new Object[]{
                 sp.getMaSP(),
                 sp.getTenSP(),
-                sp.getSoLuong(),
-                sp.getDonGia()
+                sp.getDonVi(),
+                sp.getDonGia(),
+                sp.getSoLuong()
             });
         }
     }
 
     private boolean checkMaSP() {
         for (SanPham sp : spList) {
-            if (sp.getMaSP().trim().equalsIgnoreCase(txtMaSanPham.getText().trim())) {
+            if (sp.getMaSP().trim().equalsIgnoreCase(maSPVar.getText().trim())) {
                 return false;
             }
         }
@@ -332,11 +349,12 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtTenSanPham.setText("");
-        txtMaSanPham.setText("");
-        txtSoLuong.setText("");
-        txtDonGia.setText("");
-        txtMaSanPham.setEnabled(true);
+        tenSPVar.setText("");
+        maSPVar.setText("");
+        soLuongVar.setText("");
+        donViSPVar.setText("");
+        donGiaVar.setText("");
+        maSPVar.setEnabled(true);
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
         getData();
@@ -345,21 +363,22 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         
-        String maSP = txtMaSanPham.getText();
+        String maSP = maSPVar.getText();
         if (maSP.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Mã sản phẩm không để trống");
             return;
         }
-        String tenSP = txtTenSanPham.getText();
+        String tenSP = tenSPVar.getText();
         if (tenSP.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Tên sản phẩm không để trống");
             return;
         }
         try {
-            float donGia = Float.parseFloat(txtDonGia.getText());
-            int soLuong = Integer.parseInt(txtSoLuong.getText());
+            float donGia = Float.parseFloat(donGiaVar.getText());
+            String donVi = donViSPVar.getText();
+            int soLuong = Integer.parseInt(soLuongVar.getText());
             if (checkMaSP()) {
-                SanPham sp = new SanPham(maSP, tenSP, donGia, soLuong);
+                SanPham sp = new SanPham(maSP, tenSP, donVi, donGia, soLuong);
                 SanPhamDao.insert(sp);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Mã sản phẩm không được trùng");
@@ -370,7 +389,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Lỗi: " + ex);
         }
         getData();
-        txtMaSanPham.setEnabled(true);
+        maSPVar.setEnabled(true);
         btnSua.setEnabled(false);
         btnXoa.setEnabled(false);
     }//GEN-LAST:event_btnThemActionPerformed
@@ -383,7 +402,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 SanPham sp = spList.get(row);
                 int option = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn xóa không");
                 if (option == 0) {
-                    if (checkMaSPXoa(txtMaSanPham.getText())) {
+                    if (checkMaSPXoa(maSPVar.getText())) {
                         SanPhamDao.delete(sp.getMaSP());
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không xóa được vì thông tin sản phẩm đang tồn tại trong hóa đơn");
@@ -407,7 +426,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         ResultSet rs = null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select maSP from ChiTietHoaDon";
+            String sql = "select maSP from ChiTietGoiHang";
             pre = conn.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
@@ -427,23 +446,24 @@ public class QuanLySanPham extends javax.swing.JFrame {
             SanPham sp = spList.get(row);
             btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
-            txtMaSanPham.setEnabled(false);
-            txtMaSanPham.setText(sp.getMaSP().trim());
-            txtTenSanPham.setText(sp.getTenSP().trim());
-            txtDonGia.setText(String.valueOf(sp.getDonGia()));
-            txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
+            maSPVar.setEnabled(false);
+            maSPVar.setText(sp.getMaSP().trim());
+            tenSPVar.setText(sp.getTenSP().trim());
+            donViSPVar.setText(sp.getDonVi().trim());
+            donGiaVar.setText(String.valueOf(sp.getDonGia()));
+            soLuongVar.setText(String.valueOf(sp.getSoLuong()));
         }
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        if (txtTenSanPham.getText().isEmpty()) {
+        if (tenSPVar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Tên sản phẩm không để trống");
             return;
         }
         try {
-            Float.parseFloat(txtDonGia.getText());
-            Integer.parseInt(txtSoLuong.getText());
+            Float.parseFloat(donGiaVar.getText());
+            Integer.parseInt(soLuongVar.getText());
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Yêu cầu nhập số và không để trống");
         }
@@ -451,10 +471,11 @@ public class QuanLySanPham extends javax.swing.JFrame {
         if (row >= 0) {
             SanPham s = spList.get(row);
 
-            s.setMaSP(txtMaSanPham.getText());
-            s.setTenSP(txtTenSanPham.getText());
-            s.setDonGia(Float.parseFloat(txtDonGia.getText()));
-            s.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            s.setMaSP(maSPVar.getText());
+            s.setTenSP(tenSPVar.getText());
+            s.setDonVi(donViSPVar.getText());
+            s.setDonGia(Float.parseFloat(donGiaVar.getText()));
+            s.setSoLuong(Integer.parseInt(soLuongVar.getText()));
             SanPhamDao.update(s);
             btnSua.setEnabled(false);
             btnXoa.setEnabled(false);
@@ -474,6 +495,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     tableModel.addRow(new Object[]{
                         sp.getMaSP(),
                         sp.getTenSP(),
+                        sp.getDonVi(),
                         sp.getSoLuong(),
                         sp.getDonGia()
                     });
@@ -532,7 +554,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JTextField donGiaVar;
+    private javax.swing.JTextField donViSPVar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -541,10 +566,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField maSPVar;
+    private javax.swing.JTextField soLuongVar;
     private javax.swing.JTable tblDanhSach;
-    private javax.swing.JTextField txtDonGia;
-    private javax.swing.JTextField txtMaSanPham;
-    private javax.swing.JTextField txtSoLuong;
-    private javax.swing.JTextField txtTenSanPham;
+    private javax.swing.JTextField tenSPVar;
     // End of variables declaration//GEN-END:variables
 }

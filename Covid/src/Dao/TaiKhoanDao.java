@@ -28,7 +28,7 @@ public class TaiKhoanDao {
         PreparedStatement pre = null;
         ResultSet rs = null;
 
-        String sql = "select * from TaiKhoan where quyenTruyCap = 'staff'";
+        String sql = "select * from TaiKhoan where quyenTruyCap = 'staff' or quyenTruyCap = 'LockAcc'";
         try {
             conn = JDBCConnection.getConnection();
             pre = conn.prepareStatement(sql);
