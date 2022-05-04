@@ -969,9 +969,9 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         cbMaGH.removeAllItems();
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from GoiHang where maGH = ?";
+            String sql = "select * from GoiHang";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, maGHVar.getText().trim());
+//            pre.setString(1, maGHVar.getText().trim());
             rs = pre.executeQuery();
             while (rs.next()) {
                 cbMaGH.addItem(rs.getString("maGH").trim());
