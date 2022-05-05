@@ -126,11 +126,11 @@ public class LichSuDuocQuanLy extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã bệnh nhân", "Sự kiện", "Thời gian"
+                "Mã bệnh nhân", "Sự kiện", "Trạng thái", "Thời gian"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -194,7 +194,7 @@ public class LichSuDuocQuanLy extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select maNV, suKien, thoiGian from LichSuDuocQuanLy where maNV = ?";
+            String sql = "select maNV, suKien, trangThai, thoiGian from LichSuDuocQuanLy where maNV = ?";
             pre = conn.prepareStatement(sql);
             pre.setString(1, getMaNV().trim());
             rs = pre.executeQuery();
@@ -203,6 +203,7 @@ public class LichSuDuocQuanLy extends javax.swing.JFrame {
                 Vector arr = new Vector();
                 arr.add(rs.getString("maNV"));
                 arr.add(rs.getString("suKien"));
+                arr.add(rs.getString("trangThai"));
                 arr.add(rs.getString("thoiGian"));
                 tableModel.addRow(arr);
             }

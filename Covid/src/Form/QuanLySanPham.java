@@ -424,7 +424,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     if (checkMaSPXoa(maSPVar.getText())) {
                         SanPhamDao.delete(sp.getMaSP());
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Không xóa được vì thông tin sản phẩm đang tồn tại trong hóa đơn");
+                        JOptionPane.showMessageDialog(rootPane, "Không xóa được vì thông tin sản phẩm đang tồn tại trong gói nhu yếu phẩm");
                         return;
                     }
                 }

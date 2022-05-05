@@ -92,6 +92,7 @@ drop table LichSuThanhToan
 create table LichSuDuocQuanLy(
 	maNV nvarchar(20),
 	suKien nvarchar(200),
+	trangThai nvarchar(20),
 	thoiGian nvarchar(30)
 )
 

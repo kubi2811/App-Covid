@@ -62,7 +62,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         donGiaSPVar.setEnabled(false);
         maSPVar.setEnabled(false);
         txtTongTien.setEditable(false);
-        btnXoa.setEnabled(false);
+//        btnXoa.setEnabled(false);
 //        txtMaNV.setEnabled(false);
         LoadTenSP();
     }
@@ -633,11 +633,13 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
         donGiaSPVar.setText("");
         soLuongSPVar.setText("");
         donGiaGHVar.setText("");
+        txtTongTien.setText("");
         LoadTenSP();
         btnXoa.setEnabled(false);
         
         DefaultTableModel model2 = (DefaultTableModel)tblDanhSach.getModel();
         model2.setRowCount(0);
+        loadMaGH();
 //        txtMaNV.setText(this.getMaNV());
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -647,7 +649,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
             conn = JDBCConnection.getConnection();
             String sql = "select ChiTietGoiHang.maSP, tenSP, soLuongBan, donGia, soLuongBan * donGia as 'thanhTien'\n"
             + "from ChiTietGoiHang inner join SanPham on SanPham.maSP = ChiTietGoiHang.maSP\n"
-            + "where maHD = ?\n"
+            + "where maGH = ?\n"
             + "order by donGia\n";
             pre = conn.prepareStatement(sql);
             pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
@@ -681,10 +683,10 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
 
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "delete from ChiTietGoiHang where maSP = ? and maGH = ?";
+            String sql = "delete from GoiHang where maGH = ?; delete from ChiTietGoiHang where maGH = ?";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, maSPVar.getText().trim());
-            pre.setString(2, cbMaGH.getSelectedItem().toString().trim());
+//            pre.setString(1, maSPVar.getText().trim());
+            pre.setString(1, cbMaGH.getSelectedItem().toString().trim());
 
             pre.executeUpdate();
 
@@ -794,7 +796,7 @@ public class QuanLyGoiHang extends javax.swing.JFrame {
                 }
             }
         }
-        btnXoa.setEnabled(false);
+//        btnXoa.setEnabled(false);
     }//GEN-LAST:event_cbMaGHPopupMenuWillBecomeInvisible
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

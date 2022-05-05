@@ -325,17 +325,17 @@ public class ThongTinCaNhan extends javax.swing.JFrame {
             rs = pre.executeQuery();
 //            tableModel.setRowCount(0);
             while (rs.next()) {
-                maNVVar.setText(rs.getString("maNV"));
-                namSinhVar.setText(rs.getString("namSinh"));
-                trangThaiVar.setText(rs.getString("trangThai"));
-                tenBenhNhanVar.setText(rs.getString("tenNV"));
+                maNVVar.setText(rs.getString("maNV").trim());
+                namSinhVar.setText(rs.getString("namSinh").trim());
+                trangThaiVar.setText(rs.getString("trangThai").trim());
+                tenBenhNhanVar.setText(rs.getString("tenNV").trim());
                 noiDieuTriVar.setText(rs.getString("noiDieuTri").trim());
-                diaChiVar.setText(rs.getString("diaChi").trim());
-                thanhPhoVar.setText(rs.getString("thanhPho"));
-                quanVar.setText(rs.getString("quan"));
-                phuongVar.setText(rs.getString("phuong"));
-                lienQuanVar.setText(rs.getString("lienQuan"));
-                lichSuCovidVar.setText(rs.getString("lichSuCovid"));
+                diaChiVar.setText(rs.getString("diaChi").trim().trim());
+                thanhPhoVar.setText(rs.getString("thanhPho").trim());
+                quanVar.setText(rs.getString("quan").trim());
+                phuongVar.setText(rs.getString("phuong").trim());
+                lienQuanVar.setText(rs.getString("lienQuan").trim());
+                lichSuCovidVar.setText(rs.getString("lichSuCovid").trim());
             }
 
         } catch (SQLException ex) {

@@ -9,6 +9,7 @@ package Form;
  *
  * @author ranco
  */
+import Connect.JDBCConnection;
 import Dao.DiaDiemDieuTriDao;
 import Dao.NhanVienDao;
 import Dao.TaiKhoanDao;
@@ -16,8 +17,13 @@ import Objects.DiaDiem;
 import Objects.NhanVien;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -613,6 +619,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        
+        if (checkSucChuaBV(noiDieuTriVar.getSelectedItem().toString()) == false){
+            JOptionPane.showMessageDialog(rootPane, "Súc chứa bệnh viện đã đầy không thể thêm");
+            return;
+        }
         String trangThaiTemp = null;
         String nameTemp = null;
         if (lienQuanVar.getText().isEmpty()){
@@ -720,6 +731,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        int flag = 0;
+        if (checkSucChuaBV(noiDieuTriVar.getSelectedItem().toString()) == false){
+            JOptionPane.showMessageDialog(rootPane, "Súc chứa bệnh viện đã đầy không thể thêm");
+            return;
+        }
+        
         String tenNV = txtTenNV.getText();
         if(tenNV.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Tên bệnh nhân không để trống");
@@ -746,18 +763,40 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             tableModel.setRowCount(0);
             for (NhanVien nv : nvList) {
                 if (nv.getMaNV().trim().equals(txtMaNV.getText())){
-                    if (!noiDieuTriVar.getSelectedItem().toString().equals(nv.getNoiDieuTri())){
-                    System.out.println("innn");
-                    ddList = DiaDiemDieuTriDao.getAllTen();
-                    for(String dd : ddList){
-                        if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
-                            DiaDiemDieuTriDao.update2Places(dd,nv.getNoiDieuTri());
+                    if (!noiDieuTriVar.getSelectedItem().toString().equals(nv.getNoiDieuTri()) || !trangThaiVar.getText().equals(nv.getTrangThai())){
+                        System.out.println("innn");
+                        ddList = DiaDiemDieuTriDao.getAllTen();
+                        for(String dd : ddList){
+                            if(noiDieuTriVar.getSelectedItem().toString().equals(dd)){
+                                DiaDiemDieuTriDao.update2Places(dd,nv.getNoiDieuTri());
+                            }
                         }
-                    }
+                        flag = 1;
                     }
                 }
             }
             NhanVienDao.update(s);
+            if (flag == 1){
+                Connection conn = null;
+                PreparedStatement pre = null;
+                try {
+                    conn = JDBCConnection.getConnection();
+                    String sql = "insert into LichSuDuocQuanLy values (?, ?, ?, ?)";
+                    pre = conn.prepareStatement(sql);
+                    pre.setNString(1, txtMaNV.getText());
+                    pre.setString(2, "Bệnh nhân chuyển sang: " + noiDieuTriVar.getSelectedItem().toString().trim());
+                    
+                    pre.setNString(3, trangThaiVar.getText());
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+                    Date date = new Date();
+                    pre.setString(4, formatter.format(date));
+
+                    pre.executeUpdate();
+
+                } catch (SQLException ex) {
+                    System.out.println("Lỗi: " + ex);
+                }
+            }
 
             getData();
             btnSua.setEnabled(false);
@@ -944,6 +983,30 @@ DefaultComboBoxModel model;
         return true;
     }
     
+    private boolean checkSucChuaBV(String tenbv){
+        Connection conn = null;
+        PreparedStatement pre = null;
+        ResultSet rs = null;
+//        goiHangVar.removeAllItems();
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from DiaDiemDieuTri where ten = ?";
+            pre = conn.prepareStatement(sql);
+            pre.setNString(1, tenbv);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                System.out.println(Integer.valueOf(rs.getString("soLuongHienTai").trim()));
+                System.out.println(Integer.valueOf(rs.getString("sucChua").trim()));
+                if(Integer.valueOf(rs.getString("soLuongHienTai").trim()) <  Integer.valueOf(rs.getString("sucChua").trim())){
+                    return true;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+        return false;
+    }
     public void checkAddress(){
         
     }
